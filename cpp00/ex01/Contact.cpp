@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 01:05:19 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/18 20:10:57 by esilva-s         ###   ########.fr       */
+/*   Created: 2023/05/18 19:22:51 by esilva-s          #+#    #+#             */
+/*   Updated: 2023/05/18 19:34:00 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
-int main(void)
+std::string	Contact::get_name(void)
 {
-    PhoneBook book;
+    return (this->name);
+}
 
-    book.add_contact();
-    return (0);
+std::string	Contact::get_number(void)
+{
+    return (this->number_phone);
 }
