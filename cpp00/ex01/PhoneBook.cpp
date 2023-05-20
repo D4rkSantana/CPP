@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:56:50 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/18 20:23:52 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:43:37 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 PhoneBook::PhoneBook()
 {
-    Contact cont_zero(" ", " ");
-	
     std::cout << "Phonebook created" << std::endl;
-    for(int i = 0; i < 8; i++)
-        this->contacts[i] = cont_zero;
+    this->pos = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -28,31 +25,38 @@ PhoneBook::~PhoneBook()
 
 void	PhoneBook::add_contact(void)
 {
-    std::string name;
-    std::string number;
+    std::string vec[4];
 
-    std::cout << "\nName plss!\n";
-    std::cin >> name;
-    std::cout << "\nNumber plss!\n";
-    std::cin >> number;
-
-    Contact new_cont(name, number);
+    std::cout << "First Name: ";
+    std::cin >> vec[0];
+     std::cout << "Last Name: ";
+    std::cin >> vec[1];
+     std::cout << "Nickname: ";
+    std::cin >> vec[2];
+    std::cout << "Number Phone: ";
+    std::cin >> vec[3];
     
-    this->contacts[this->pos] = new_cont;
+    this->contacts[this->pos].edit(vec);
     if (this->pos < 7)
         this->pos = this->pos +1;
     else
         this->pos = 0;
 
 }
-/*
-void	PhoneBook::del_contact(std::string)
+
+void	PhoneBook::print_contacts(void)
 {
+    int index;
 
+    index = 0;
+    while (index < 8)
+    {
+        if (this->contacts[index].get_status() != 1)
+            break ;
+        std::cout << "[" << index << "]";
+        std::cout << " name: " << this->contacts[index].get_name();
+        std::cout << " number: " << this->contacts[index].get_number();
+        std::cout << std::endl;
+        index++;
+    }
 }
-
-Contact	PhoneBook::get_contacts(void)
-{
-
-}
-*/
