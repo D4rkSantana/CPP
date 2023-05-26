@@ -6,12 +6,11 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 01:05:19 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/22 21:12:05 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/26 19:11:08 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include <cstring>
+#include "main.hpp"
 
 std::string	string_toupper(std::string input)
 {

@@ -6,12 +6,14 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:21:19 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/22 21:36:12 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/26 19:13:49 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
+
+#include "main.hpp"
 
 class Contact
 {
@@ -34,3 +36,5 @@ class Contact
 		int			get_status(void);
 		void		edit(std::string vec[4]);
 };
+
+#endif
