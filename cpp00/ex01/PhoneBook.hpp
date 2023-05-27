@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:21:23 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/26 19:20:26 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:00:48 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_HPP
 
 #include "main.hpp"
+#include "Contact.hpp"
 
 class PhoneBook{
 	private:
