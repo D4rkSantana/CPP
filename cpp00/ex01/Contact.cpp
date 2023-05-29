@@ -6,11 +6,11 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:22:51 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/26 19:11:03 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:15:45 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "Contact.hpp"
 
 Contact::Contact()
 {

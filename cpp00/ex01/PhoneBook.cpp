@@ -6,11 +6,11 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:56:50 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/26 19:12:36 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:45:22 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -69,12 +69,14 @@ int    PhoneBook::print_contacts()
 
 void    PhoneBook::print_search(int index)
 {
+    print_div();
     std::cout << "Index: " << index << std::endl;
     std::cout << "First Name: " << this->contacts[index].get_first() << std::endl;
     std::cout << "Last Name  " << this->contacts[index].get_last() << std::endl;
-    std::cout << "Nickname  " << this->contacts[index].get_nick() << std::endl << std::endl;
+    std::cout << "Nickname  " << this->contacts[index].get_nick() << std::endl;
     std::cout << "Number: " << this->contacts[index].get_number() << std::endl;
     std::cout << "Darkest Secret: " << this->contacts[index].get_secret() << std::endl;
+    print_div();
 }
 
 void	PhoneBook::search_contact(void)
@@ -86,12 +88,12 @@ void	PhoneBook::search_contact(void)
         return ;
     std::cout << "enter the index of the contact: ";
     std::cin >> command;
-    if (command.length() != 1)
+    if (command.length() != 1 || !str_isdigit(command.c_str()))
     {
         std::cout << "wrong index" << std::endl;
         return ;
     }
-    index = std::stoi(command);
+    index = atoi(command.c_str());
     if (index < 0 || index > 7)
     {
         std::cout << "wrong index" << std::endl;

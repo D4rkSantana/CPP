@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 01:05:24 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/18 19:34:03 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:43:31 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 std::string	string_toupper(std::string input)
 {
-	int			index;
-	int			size;
-	std::string	result;
+	unsigned long	index;
+	int				size;
+	std::string		result;
 
 	index = 0;
 	size = input.size();
@@ -34,12 +34,7 @@ int	check_args(int argc)
 {
 	if (argc == 1)
 	{
-		std::cout << "Estatica bizzzzzz zzzzzz" << std::endl;
-		return (1);
-	}
-	if (argc > 2)
-	{
-		std::cout << "Digite somente uma mensagem por gentileza" << std::endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (1);
 	}
 	return (0);
@@ -47,11 +42,18 @@ int	check_args(int argc)
 
 int main(int argc, char **argv)
 {
+	std::string	input;
 	std::string	result;
+	int			index = 1;
 
 	if (check_args(argc))
 		return (1);
-	result = string_toupper(argv[1]);
+	while (index < argc)
+	{
+		input += argv[index];
+		index++;
+	}
+	result = string_toupper(input);
 	std::cout << result << std::endl;
 	return (0);
 }

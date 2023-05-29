@@ -5,17 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/26 20:52:30 by esilva-s          #+#    #+#              #
-#    Updated: 2023/05/29 20:46:20 by esilva-s         ###   ########.fr        #
+#    Created: 2023/05/29 19:46:53 by esilva-s          #+#    #+#              #
+#    Updated: 2023/05/29 20:28:01 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = megaphone
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-INCLUDES = -I PhoneBook.hpp Contact.hpp
-SRC = main.cpp PhoneBook.cpp Contact.cpp PhoneBook_tools.cpp 
+SRC = megaphone.cpp
 OBG = $(SRC:.cpp=.o)
 
 all: $(OBG)
@@ -30,4 +29,5 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all
+re:	fclean	all
+	

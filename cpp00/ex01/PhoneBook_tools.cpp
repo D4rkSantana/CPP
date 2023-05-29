@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tools.cpp                                    :+:      :+:    :+:   */
+/*   PhoneBook_tools.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:56:57 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/26 18:58:22 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:44:57 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "PhoneBook.hpp"
 
-static void    print_div(void)
+static int  char_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int str_isdigit(const char *str)
+{
+    int index = 0;
+
+    while (str[index] != 0)
+    {
+        if (!char_isdigit(str[index]))
+            return (0);
+        index++;
+    }
+    return (1);
+}
+
+void    print_div(void)
 {
     std::cout << "---------------------------------------------" << std::endl;
 }

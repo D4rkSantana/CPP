@@ -6,17 +6,17 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 01:05:19 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/26 19:11:08 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:45:00 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "PhoneBook.hpp"
 
 std::string	string_toupper(std::string input)
 {
-	int			index;
-	int			size;
-	std::string	result;
+	unsigned long   index;
+	int			    size;
+	std::string	    result;
 
 	index = 0;
 	size = input.size();
@@ -48,6 +48,5 @@ int main(void)
         else
             std::cout << "invalid command, type again" << std::endl;
     }
-    std::cout << "end!" << std::endl;
     return (0);
 }
