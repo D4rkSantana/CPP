@@ -15,11 +15,9 @@
 std::string	string_toupper(std::string input)
 {
 	unsigned long   index;
-	int			    size;
 	std::string	    result;
 
 	index = 0;
-	size = input.size();
 	while (index < input.size())
 	{
 		result.push_back(toupper(input[index]));
