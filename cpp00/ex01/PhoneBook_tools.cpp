@@ -34,7 +34,8 @@ int str_isdigit(const char *str)
 
 void    print_div(void)
 {
-    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << std::setfill('-') << std::setw(45); 
+    std::cout << "-" << std::endl;
 }
 
 static void	print_coluns(std::string str)
@@ -44,19 +45,15 @@ static void	print_coluns(std::string str)
         str.erase(9, str.length());
         str.push_back('.');
     }
-    else if (str.length() < 10)
-    {
-        while (str.length() < 10)
-        {
-            str.push_back(' ');
-        }
-    }
+    std::cout << std::setfill(' ') << std::setw(10);
     std::cout << str << "|";
 }
 
 void    print_line(int index, std::string fname, std::string lname, std::string nick)
 {
-    std::cout << "|" << index << "         |";
+    std::cout << "|";
+    std::cout << std::setfill(' ') << std::setw(10);
+    std::cout << index << "|";
     print_coluns(fname);
     print_coluns(lname);
     print_coluns(nick);
@@ -67,9 +64,14 @@ void    print_line(int index, std::string fname, std::string lname, std::string 
 void    print_headline(void)
 {
     print_div();
-    std::cout << "|Index     |";
-    std::cout << "First Name|";
-    std::cout << "Last Name |";
-    std::cout << "Nickname  |" << std::endl;
+    std::cout << "|";
+    std::cout << std::setfill(' ') << std::setw(10);
+    std::cout << "Index" << "|";
+    std::cout << std::setfill(' ') << std::setw(10);
+    std::cout << "First Name" << "|";
+    std::cout << std::setfill(' ') << std::setw(10);
+    std::cout << "Last Name" << "|";
+    std::cout << std::setfill(' ') << std::setw(10);
+    std::cout << "Nickname" << "|" << std::endl;
     print_div();
 }
