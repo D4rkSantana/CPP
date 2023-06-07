@@ -1,9 +1,9 @@
-NAME = replace
+NAME = my_replace
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
 INCLUDES = -I replace.hpp
-SRC = main.cpp replace.cpp replace.hpp
+SRC = main.cpp replace.cpp
 OBG = $(SRC:.cpp=.o)
 
 all: $(OBG)
