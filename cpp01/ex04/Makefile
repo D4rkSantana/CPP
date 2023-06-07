@@ -1,12 +1,21 @@
-NAME	= replace
-COMP	= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98
-MAIN	= main.cpp 
-SRC		= replace.cpp replace.hpp
+NAME = replace
+CC = c++
+FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-all:
-	@ clear
-	$(COMP) $(FLAGS) $(MAIN) $(SRC)
+INCLUDES = -I replace.hpp
+SRC = main.cpp replace.cpp replace.hpp
+OBG = $(SRC:.cpp=.o)
 
-clear:
+all: $(OBG)
+	$(CC) $(FLAGS) $(OBG) -o $(NAME)
+
+$(OBG): $(SRC)
+	$(CC) $(FLAGS) -c $(SRC)
+
+clean:
+	rm -rf $(OBG)
+
+fclean: clean
 	rm -rf $(NAME)
+
+re: fclean all

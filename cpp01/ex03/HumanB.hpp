@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:41:47 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/04/23 19:50:26 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:38:24 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class HumanB
 	private:
 		std::string	_name;
 		Weapon		*_weapon;
+		int			 is_armed;
 	public:
 		
 		HumanB(std::string name);

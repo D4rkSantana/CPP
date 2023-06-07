@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:19:42 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/04/23 19:52:33 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:48:22 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 Weapon::Weapon(std::string type): _type(type)
 {
-	std::cout << "-- Weapon Create" << std::endl;
+	std::cout << "Weapon " << type << " Create" << std::endl;
 }
 
 Weapon::~Weapon()
 {
-	std::cout << "-- Weapon destroy" << std::endl;
+	std::cout << "Weapon destroy" << std::endl;
 }
 
 const std::string	&Weapon::getType(void)

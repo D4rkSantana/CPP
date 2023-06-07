@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:40:38 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/04/23 19:56:37 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:44:24 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main()
 	std::cout << std::endl << "==== Teste HumanB ====" << std::endl;
 	Weapon club_b = Weapon("crude spiked club");
 	HumanB jim("Jim");
-	
+	jim.attack();
 	jim.setWeapon(club_b);
 	jim.attack();
 	club_b.setType("some other type of club");

@@ -1,10 +1,31 @@
-NAME	= zombie
-COMP	= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98
-MAIN	= main.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/06 20:07:51 by esilva-s          #+#    #+#              #
+#    Updated: 2023/06/06 20:07:53 by esilva-s         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-all:
-	$(COMP) $(FLAGS) $(MAIN)
+NAME = hi_this_is_brain
+CC = c++
+FLAGS = -std=c++98 -Wall -Wextra -Werror
+SRC = main.cpp
+OBG = $(SRC:.cpp=.o)
 
-clear:
+all: $(OBG)
+	$(CC) $(FLAGS) $(OBG) -o $(NAME)
+
+$(OBG): $(SRC)
+	$(CC) $(FLAGS) -c $(SRC)
+
+clean:
+	rm -rf $(OBG)
+
+fclean: clean
 	rm -rf $(NAME)
+
+re: fclean all

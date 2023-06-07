@@ -1,11 +1,33 @@
-NAME	= zombie
-COMP	= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98
-MAIN	= main.cpp Weapon.cpp Weapon.hpp HumanA.cpp HumanA.hpp HumanB.cpp HumanB.hpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/06 20:10:51 by esilva-s          #+#    #+#              #
+#    Updated: 2023/06/06 20:54:17 by esilva-s         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-all:
-	$(COMP) $(FLAGS) $(MAIN)
+NAME = unnecessary_violence
+CC = c++
+FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-clear:
+INCLUDES = -I Weapon.hpp HumanA.hpp HumanB.hpp
+SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+OBG = $(SRC:.cpp=.o)
+
+all: $(OBG)
+	$(CC) $(FLAGS) $(OBG) -o $(NAME)
+
+$(OBG): $(SRC)
+	$(CC) $(FLAGS) -c $(SRC)
+
+clean:
+	rm -rf $(OBG)
+
+fclean: clean
 	rm -rf $(NAME)
 
+re: fclean all
