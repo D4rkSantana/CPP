@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:40:38 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/07 22:34:57 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:02:38 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	main(int argc, char **argv)
 		std::cout << "File empyt" << std::endl;
 		return (1);
 	}
-	std::cout << content;
 	result = replace(content, argv[2], argv[3]);
-	std::cout << "============ result ============" << std::endl << result << std::endl;
+	create_file(argv[1], result);
 	return (0);
 }

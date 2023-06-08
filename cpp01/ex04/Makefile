@@ -2,11 +2,13 @@ NAME = my_replace
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-INCLUDES = -I replace.hpp
+INCLUDES = replace.hpp
 SRC = main.cpp replace.cpp
 OBG = $(SRC:.cpp=.o)
 
-all: $(OBG)
+all: $(NAME)
+
+$(NAME): $(OBG)
 	$(CC) $(FLAGS) $(OBG) -o $(NAME)
 
 $(OBG): $(SRC)

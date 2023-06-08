@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:18:45 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/07 22:32:17 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:02:10 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ std::string replace(std::string str, std::string s1, std::string s2)
     size_t      pos = 0;
     size_t      temp = 0;
 
+    if (s1 == s2)
+    {
+        std::cout << "OK" << std::endl;
+        return (str);
+    }
+        
     while (pos < str.size())
     {
         temp = str.find(s1, pos);
@@ -51,4 +57,18 @@ std::string replace(std::string str, std::string s1, std::string s2)
         pos = temp + s1.size();
     }
     return (result);
+}
+
+static const char    *name_replace(std::string file)
+{
+    file.append(".replace");
+    return (file.c_str());
+}
+
+void    create_file(std::string file, std::string content)
+{
+    std::ofstream   NewFile(name_replace(file));
+
+    NewFile << content;
+    NewFile.close();
 }
