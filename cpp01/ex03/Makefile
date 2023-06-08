@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 20:10:51 by esilva-s          #+#    #+#              #
-#    Updated: 2023/06/06 20:54:17 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/06/08 13:13:01 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ INCLUDES = -I Weapon.hpp HumanA.hpp HumanB.hpp
 SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBG = $(SRC:.cpp=.o)
 
-all: $(OBG)
+all: $(NAME)
+
+$(NAME): $(OBG) 
 	$(CC) $(FLAGS) $(OBG) -o $(NAME)
 
 $(OBG): $(SRC)

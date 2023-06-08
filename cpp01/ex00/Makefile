@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:50:47 by esilva-s          #+#    #+#              #
-#    Updated: 2023/06/06 19:51:04 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/06/08 13:13:29 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ INCLUDES = -I Zombie.hpp
 SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBG = $(SRC:.cpp=.o)
 
-all: $(OBG)
+all: $(NAME)
+
+$(NAME): $(OBG) 
 	$(CC) $(FLAGS) $(OBG) -o $(NAME)
 
 $(OBG): $(SRC)
