@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:19:21 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/07 11:28:25 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/06/07 21:26:32 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 #include <fstream>
 
 std::string	read_file(std::string file_name);
+std::string replace(std::string str, std::string s1, std::string s2);
 
 #endif /* REPLACE_HPP */
