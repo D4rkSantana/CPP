@@ -5,17 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/13 21:13:43 by esilva-s          #+#    #+#              #
-#    Updated: 2023/06/13 21:15:41 by esilva-s         ###   ########.fr        #
+#    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
+#    Updated: 2023/06/13 21:19:22 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = harl
+NAME = fixed
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-INCLUDES = Harl.hpp
-SRC = main.cpp Harl.cpp
+INCLUDES = Fixed.hpp
+SRC = main.cpp Fixed.cpp
 OBG = $(SRC:.cpp=.o)
 
 all: $(NAME)
