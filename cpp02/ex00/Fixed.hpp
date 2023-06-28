@@ -19,13 +19,17 @@
 class Fixed
 {
     private:
-        int number;
-        static const int bits = 8;
+        int raw;
+        static const int fract = 8;
     public:
+        //construtores
         Fixed();
         Fixed(const Fixed& temp);
-        Fixed& operator=(const Fixed& temp);
+        //destrutor
         ~Fixed();
+        //atribuição
+        Fixed& operator=(const Fixed& temp);
+
         int getRawBits(void) const;
         void setRawBits(int const raw);
 };
