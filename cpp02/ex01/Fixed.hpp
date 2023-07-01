@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <math>
 
 class Fixed
 {
@@ -38,5 +39,7 @@ class Fixed
         int toInt(void) const;
         float toFloat(void) const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif /*FIXED_HPP*/

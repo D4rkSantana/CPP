@@ -26,12 +26,14 @@ Fixed::Fixed(const Fixed& temp)
 
 Fixed::Fixed(const int number)
 {
+    this->raw = number << fract;
     //std::cout << "Copy constructor called" << std::endl;
 
 }
 
 Fixed::Fixed(const float number)
 {
+    this->raw = number << fract;
     //std::cout << "Copy constructor called" << std::endl;
 
 }
@@ -68,4 +70,10 @@ int Fixed::toInt(void) const
 float Fixed::toFloat(void) const
 {
     return (0);
+}
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+{
+    out << fixed.toFloat();
+    return (out);
 }
