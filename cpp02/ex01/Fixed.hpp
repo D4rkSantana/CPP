@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <string>
-#include <math>
+#include <math.h>
 
 class Fixed
 {
@@ -23,16 +23,12 @@ class Fixed
         int raw;
         static const int fract = 8;
     public:
-        //construtores
         Fixed();
         Fixed(const Fixed& temp);
         Fixed(const int number);
         Fixed(const float number);
-        //destrutor
         ~Fixed();
-        //atribuição
         Fixed& operator=(const Fixed& temp);
-        Fixed& operator<<(const Fixed& temp);
 
         int getRawBits(void) const;
         void setRawBits(int const raw);

@@ -4,16 +4,22 @@
 int main()
 {
     static const int fract = 8;
-    float i = 15.00205;
+    int i = 15;
+    int i2 = 5;
     int raw = 0;
-    float result = 0;
+    int raw2 = 0;
+    int raw_result = 0;
+    int result = 0;
 
 
-    raw = roundf(i * (1 << fract));
-    std::cout << raw << std::endl;
+    raw = i << fract;
+    std::cout << "raw1: " << raw << std::endl;
 
-    result = (float)raw / (1 << fract);
-    std::cout << result << std::endl;
+    raw2 = i2 << fract;
+    std::cout << "raw2: " << raw2 << std::endl;
 
+    raw_result = raw + raw2;
+    result = raw_result >> fract;
+    std::cout << "raw result: " << raw_result << " result: " << result << std::endl;
     return (0);
 }
