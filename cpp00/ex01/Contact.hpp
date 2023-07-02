@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:21:19 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/29 19:19:53 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:50:07 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Contact{
 		std::string	get_number(void);
 		std::string	get_secret(void);
 		int			get_status(void);
-		void		edit(std::string vec[4]);
+		void		edit(std::string vec[5]);
 };
 
 #endif

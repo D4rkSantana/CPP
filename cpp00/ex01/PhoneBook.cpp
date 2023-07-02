@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:56:50 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/29 19:45:22 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/02 12:08:26 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,34 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook()
 {
-	std::cout << "Phonebook destroed" << std::endl;
+	std::cout << std::endl << "Phonebook destroed" << std::endl;
 }
 
 void	PhoneBook::add_contact(void)
 {
     std::string vec[5];
 
+    
     std::cout << "First Name: ";
-    std::cin >> vec[0];
-     std::cout << "Last Name: ";
-    std::cin >> vec[1];
-     std::cout << "Nickname: ";
-    std::cin >> vec[2];
+    vec[0] = catch_arg();
+    if (std::cin.eof())
+        return ;
+    std::cout << "Last Name: ";
+    vec[1] = catch_arg();
+    if (std::cin.eof())
+        return ;
+    std::cout << "Nickname: ";
+    vec[2] = catch_arg();
+    if (std::cin.eof())
+        return ;
     std::cout << "Number Phone: ";
-    std::cin >> vec[3];
+    vec[3] = catch_arg();
+    if (std::cin.eof())
+        return ;
     std::cout << "A Darkness Secret: ";
-    std::cin >> vec[4];
+    vec[4] = catch_arg();
+    if (std::cin.eof())
+        return ;
     this->contacts[this->pos].edit(vec);
     if (this->pos < 7)
         this->pos = this->pos +1;
@@ -87,7 +98,9 @@ void	PhoneBook::search_contact(void)
     if (this->print_contacts())
         return ;
     std::cout << "enter the index of the contact: ";
-    std::cin >> command;
+    command = catch_arg();
+    if (std::cin.eof())
+        return ;
     if (command.length() != 1 || !str_isdigit(command.c_str()))
     {
         std::cout << "wrong index" << std::endl;

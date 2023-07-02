@@ -6,11 +6,19 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:56:57 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/05/29 19:44:57 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/02 12:03:16 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+std::string catch_arg(void)
+{
+    std::string arg;
+
+    std::getline(std::cin, arg);
+    return (arg);
+}
 
 static int  char_isdigit(int c)
 {
