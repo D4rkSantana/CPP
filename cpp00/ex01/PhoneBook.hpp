@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 00:21:23 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/02 12:09:04 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:13:21 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "Contact.hpp"
 
 std::string	catch_arg(void);
+bool		empyt_check(std::string vec[], int size);
 int			str_isdigit(const char *str);
 void		print_div(void);
 void		print_headline(void);

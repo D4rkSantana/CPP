@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook_tools.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:56:57 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/02 12:03:16 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:12:42 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ std::string catch_arg(void)
 
     std::getline(std::cin, arg);
     return (arg);
+}
+
+bool    empyt_check(std::string vec[], int size)
+{
+    int i = 0;
+
+    while (i < size)
+    {
+        if (vec[i].empty())
+            return (true);
+        i++;
+    }
+    return (false);
 }
 
 static int  char_isdigit(int c)

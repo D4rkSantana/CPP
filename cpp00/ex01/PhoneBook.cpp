@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:56:50 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/02 12:08:26 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:05:36 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	PhoneBook::add_contact(void)
     vec[4] = catch_arg();
     if (std::cin.eof())
         return ;
+    if (empyt_check(vec, 5))
+    {
+        std::cout << "empty fields are not accepted" << std::endl;
+        return ;
+    }
     this->contacts[this->pos].edit(vec);
     if (this->pos < 7)
         this->pos = this->pos +1;
