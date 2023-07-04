@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:38:30 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/10 17:13:28 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:14:57 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ Harl::~Harl()
 void    Harl::complain(std::string level)
 {
     int index = 0;
-    std::string flags[4] = {"debug", "info", "warning", "error"};
+    std::string flags[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     void (Harl::*members[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
     while (index < 4 && level.compare(flags[index]))
