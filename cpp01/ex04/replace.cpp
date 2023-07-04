@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esilva-s < esilva-s@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:18:45 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/08 13:02:10 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:09:06 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,36 @@ std::string	read_file(std::string file_name)
 	return (result);
 }
 
-std::string replace(std::string str, std::string s1, std::string s2)
+int replace(std::string arguments[3])
+{
+	std::string	content;
+    std::string result;
+    
+    content = read_file(arguments[0]);
+    if (content.find(arguments[1]) == std::string::npos)
+    {
+        std::cout << "The string: \"" << arguments[1] << "\" not found in file \"";
+        std::cout << arguments[0] << "\"" << std::endl;
+        return (1);
+    }
+    if (content == "")
+	{
+		std::cout << "File empyt" << std::endl;
+		return (1);
+	}
+    result = replace_content(content, arguments[1], arguments[2]);
+    create_file(arguments[0], result);
+    return (0);
+}
+
+std::string replace_content(std::string str, std::string s1, std::string s2)
 {
 	std::string result;
     size_t      pos = 0;
     size_t      temp = 0;
 
     if (s1 == s2)
-    {
-        std::cout << "OK" << std::endl;
         return (str);
-    }
         
     while (pos < str.size())
     {
@@ -59,15 +78,10 @@ std::string replace(std::string str, std::string s1, std::string s2)
     return (result);
 }
 
-static const char    *name_replace(std::string file)
-{
-    file.append(".replace");
-    return (file.c_str());
-}
-
 void    create_file(std::string file, std::string content)
 {
-    std::ofstream   NewFile(name_replace(file));
+    file.append(".replace");
+    std::ofstream   NewFile(file.c_str());
 
     NewFile << content;
     NewFile.close();
