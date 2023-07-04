@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:40:38 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/06 20:44:24 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:22:22 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int	main()
 {
-
 	//HumanA
 	std::cout << std::endl << "==== Teste HumanA ====" << std::endl;
 	Weapon club_a = Weapon("crude spiked club");
@@ -24,7 +23,6 @@ int	main()
 	bob.attack();
 	club_a.setType("some other type of club");
 	bob.attack();
-
 
 	//HumanB
 	std::cout << std::endl << "==== Teste HumanB ====" << std::endl;
