@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 01:29:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/06 19:57:55 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:30:48 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class Zombie{
 	
 		Zombie();
 		~Zombie();
-		void set_name(std::string);
+		void setName(std::string);
     	void announce(void);
 
 	private:

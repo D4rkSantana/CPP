@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 01:27:53 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/06 20:00:49 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:31:01 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Zombie	*zombieHorde(int n, std::string name)
 	horde = new Zombie[n];
 	while (index < n)
 	{
-		horde[index].set_name(name);
+		horde[index].setName(name);
 		index++;
 	}
 	return (horde);

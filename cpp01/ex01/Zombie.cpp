@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 01:28:29 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/06/06 19:57:44 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:30:54 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Zombie::~Zombie()
 	std::cout << this->name << " is dead" << std::endl;
 }
 
-void Zombie::set_name(std::string name)
+void Zombie::setName(std::string name)
 {
 	this->name = name;
 }
