@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:50:33 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/04/19 01:22:35 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:26:20 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ Zombie	*newZombie(std::string name)
 
 	result = 0;
 	result = new Zombie();
-	result->set_name(name);
+	result->setName(name);
 	return (result);
 }
