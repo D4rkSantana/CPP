@@ -29,16 +29,33 @@ class Fixed
         Fixed(const float number);
         ~Fixed();
         Fixed& operator=(const Fixed& temp);
-        
-        Fixed operator+(const Fixed& temp);
-        Fixed operator-(const Fixed& temp);
-        Fixed operator*(const Fixed& temp);
-        Fixed operator/(const Fixed& temp);
-
+        //Metodos Min e Max
+        static Fixed const &min(Fixed const &a, Fixed const &b);
+        static Fixed const &max(Fixed const &a, Fixed const &b);
+        static Fixed &min(Fixed &a, Fixed &b);
+        static Fixed &max(Fixed &a, Fixed &b);
+        //Metodos
         int getRawBits(void) const;
         void setRawBits(int const raw);
         int toInt(void) const;
         float toFloat(void) const;
+        //Operadores aritmeticos
+        Fixed operator+(const Fixed& temp);
+        Fixed operator-(const Fixed& temp);
+        Fixed operator*(const Fixed& temp);
+        Fixed operator/(const Fixed& temp);
+        //Operadores de comparação  Os 6 operadores de comparação: >, <, >=, <=, == e !=.
+        bool operator>(const Fixed& temp);
+        bool operator<(const Fixed& temp);
+        bool operator>=(const Fixed& temp);
+        bool operator<=(const Fixed& temp);
+        bool operator==(const Fixed& temp);
+        bool operator!=(const Fixed& temp);
+        //Operadores incrimento/decremento
+        Fixed &operator++(void);
+        Fixed &operator--(void);
+        Fixed operator++(int);
+        Fixed operator--(int);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
