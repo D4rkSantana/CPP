@@ -46,7 +46,7 @@ Fixed &Fixed::operator=(Fixed const &temp)
 }
 
 //Operadores aritmeticos
-Fixed Fixed::operator+(const Fixed& temp)
+Fixed Fixed::operator+(const Fixed& temp) const
 {
     Fixed result(*this);
 
@@ -54,7 +54,7 @@ Fixed Fixed::operator+(const Fixed& temp)
     return (result);
 }
 
-Fixed Fixed::operator-(const Fixed& temp)
+Fixed Fixed::operator-(const Fixed& temp) const
 {
     Fixed result(*this);
 
@@ -62,7 +62,7 @@ Fixed Fixed::operator-(const Fixed& temp)
     return (result);
 }
 
-Fixed Fixed::operator*(const Fixed& temp)
+Fixed Fixed::operator*(const Fixed& temp) const
 {
     Fixed result(*this);
 
@@ -70,16 +70,18 @@ Fixed Fixed::operator*(const Fixed& temp)
     return (result);
 }
 
-Fixed Fixed::operator/(const Fixed& temp)
+Fixed Fixed::operator/(const Fixed& temp) const
 {
     Fixed result(*this);
-
-    result.setRawBits((long)this->getRawBits() * (1 << this->fract) / (long)temp.getRawBits());
+    if (this->getRawBits() == 0 || temp.getRawBits() == 0)
+        result.setRawBits(0);
+    else
+        result.setRawBits((long)this->getRawBits() * (1 << this->fract) / (long)temp.getRawBits());
     return (result);
 }
 
 //Operadores de comparação
-bool Fixed::operator>(const Fixed& temp)
+bool Fixed::operator>(const Fixed& temp) const
 {
     bool    result;
 
@@ -87,7 +89,7 @@ bool Fixed::operator>(const Fixed& temp)
     return (result);
 }
 
-bool Fixed::operator<(const Fixed& temp)
+bool Fixed::operator<(const Fixed& temp) const
 {
     bool    result;
 
@@ -95,7 +97,7 @@ bool Fixed::operator<(const Fixed& temp)
     return (result);
 }
 
-bool Fixed::operator>=(const Fixed& temp)
+bool Fixed::operator>=(const Fixed& temp) const
 {
     bool    result;
 
@@ -103,7 +105,7 @@ bool Fixed::operator>=(const Fixed& temp)
     return (result);
 }
 
-bool Fixed::operator<=(const Fixed& temp)
+bool Fixed::operator<=(const Fixed& temp) const
 {
     bool    result;
 
@@ -111,7 +113,7 @@ bool Fixed::operator<=(const Fixed& temp)
     return (result);
 }
 
-bool Fixed::operator==(const Fixed& temp)
+bool Fixed::operator==(const Fixed& temp) const
 {
     bool    result;
 
@@ -119,7 +121,7 @@ bool Fixed::operator==(const Fixed& temp)
     return (result);
 }
 
-bool Fixed::operator!=(const Fixed& temp)
+bool Fixed::operator!=(const Fixed& temp) const
 {
     bool    result;
 

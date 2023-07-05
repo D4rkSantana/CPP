@@ -40,17 +40,17 @@ class Fixed
         int toInt(void) const;
         float toFloat(void) const;
         //Operadores aritmeticos
-        Fixed operator+(const Fixed& temp);
-        Fixed operator-(const Fixed& temp);
-        Fixed operator*(const Fixed& temp);
-        Fixed operator/(const Fixed& temp);
+        Fixed operator+(const Fixed& temp) const;
+        Fixed operator-(const Fixed& temp) const;
+        Fixed operator*(const Fixed& temp) const;
+        Fixed operator/(const Fixed& temp) const;
         //Operadores de comparação  Os 6 operadores de comparação: >, <, >=, <=, == e !=.
-        bool operator>(const Fixed& temp);
-        bool operator<(const Fixed& temp);
-        bool operator>=(const Fixed& temp);
-        bool operator<=(const Fixed& temp);
-        bool operator==(const Fixed& temp);
-        bool operator!=(const Fixed& temp);
+        bool operator>(const Fixed& temp) const;
+        bool operator<(const Fixed& temp) const;
+        bool operator>=(const Fixed& temp) const;
+        bool operator<=(const Fixed& temp) const;
+        bool operator==(const Fixed& temp) const;
+        bool operator!=(const Fixed& temp) const;
         //Operadores incrimento/decremento
         Fixed &operator++(void);
         Fixed &operator--(void);
