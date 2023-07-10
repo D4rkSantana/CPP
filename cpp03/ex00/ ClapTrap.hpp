@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.hpp                                       :+:      :+:    :+:   */
+/*    ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
 #include <iostream>
 #include <string>
 
-class Template
+class  ClapTrap
 {
     private:
     public:
-        Template();
-        Template(const Template& temp);
-        Template& operator=(const Template& temp);
-        ~Template();
+         ClapTrap();
+         ClapTrap(const  ClapTrap& temp);
+         ClapTrap& operator=(const  ClapTrap& temp);
+        ~ ClapTrap();
 };
 
-#endif /*TEMPLATE_HPP*/
+#endif /*CLAPTRAP_HPP*/

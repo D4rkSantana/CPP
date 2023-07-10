@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*    ClapTrap.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/10 14:29:05 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:44:44 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#include "ClapTrap.hpp"
 
-Template::Template()
+ClapTrap::ClapTrap()
 {
     
 }
 
-Template::Template(const Template& temp)
+ClapTrap::ClapTrap(const ClapTrap& temp)
 {
 
 }
 
-Template &Template::operator=(const Template& temp)
+ClapTrap &ClapTrap::operator=(const ClapTrap& temp)
 {
     
 }
 
-Template::~Template()
+ClapTrap::~ClapTrap()
 {
     
 }
