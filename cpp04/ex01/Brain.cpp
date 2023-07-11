@@ -57,10 +57,10 @@ std::string Brain::getIdea(int i) const
 
 void Brain::setIdeas(std::string idea)
 {
-    int index;
+    int i;
 
-    for(index = 0; index < 100; index++)
-        this->ideas[index] = idea;
+    for(i = 0; i < 100; i++)
+        this->ideas[i] = idea;
 }
 
 void Brain::setIdeas(std::string idea, int i)

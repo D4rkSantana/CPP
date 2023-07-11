@@ -72,6 +72,14 @@ void Cat::printIdeas(void) const
         std::cout << "[" << index << "]: " << ideas[index] << std::endl;
 }
 
+std::string Cat::getIdea(int i) const
+{
+    std::string idea;
+
+    idea = this->brain->getIdea(i);
+    return (idea);
+}
+
 void Cat::setIdeas(std::string idea)
 {
     this->brain->setIdeas(idea);

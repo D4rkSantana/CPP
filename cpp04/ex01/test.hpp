@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:02:16 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 21:02:33 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:11:17 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@
 #include "WrongCat.hpp"
 
 void    line(void);
-void    teste_animal(void);
-void    teste_cat(void);
-void    teste_dog(void);
-void    teste_wrong_animal(void);
-void    teste_wrong_cat(void);
+void    test_array(void);
+void    test_copy(void);
 
 #endif /*TEST_HPP*/

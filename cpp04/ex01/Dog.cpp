@@ -27,7 +27,7 @@ Dog::Dog(const Dog& temp) : Animal()
     std::cout << "Dog was copied" << std::endl;
     this->type = temp.type;
     this->brain = new Brain;
-    for (i = 0; i < 0; i++)
+    for (i = 0; i < 100; i++)
     {
         temp_str = temp.brain->getIdea(i);
         this->brain->setIdeas(temp_str, i);
@@ -42,7 +42,7 @@ Dog &Dog::operator=(const Dog& temp)
     std::cout << "Dog has been assigned" << std::endl;
     this->type = temp.type;
     this->brain = new Brain;
-    for (i = 0; i < 0; i++)
+    for (i = 0; i < 100; i++)
     {
         temp_str = temp.brain->getIdea(i);
         this->brain->setIdeas(temp_str, i);
@@ -69,6 +69,14 @@ void Dog::printIdeas(void) const
     ideas = this->brain->getIdeas();
     for (index = 0; index < 100; index++)
         std::cout << "[" << index << "]: " << ideas[index] << std::endl;
+}
+
+std::string Dog::getIdea(int i) const
+{
+    std::string idea;
+
+    idea = this->brain->getIdea(i);
+    return (idea);
 }
 
 void Dog::setIdeas(std::string idea)

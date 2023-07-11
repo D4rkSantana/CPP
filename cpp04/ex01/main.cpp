@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/20 16:36:28 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:10:53 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 static void my_test(void)
 {
     std::cout << "\n== Inicio dos Testes ===\n";
-    teste_cat();
+    test_array();
     std::cout << "\n========================\n";
-    teste_dog();
+    test_copy();
     std::cout << "\n========================\n";
 }
 
+/*
 static void subject_test(void)
 {
     std::cout << "\n===== Subject test =====\n\n";
@@ -33,16 +34,11 @@ static void subject_test(void)
     delete i;
     std::cout << "\n========================\n";
 }
+*/
 
 int main()
 {
-    Animal *obj = new Cat;
-    obj->setIdeas("objeto1");
-    
-    obj->printIdeas();
-    
-
-    //my_test();
+    my_test();
     std::cout << std::endl;
     //subject_test();
     return(0);
