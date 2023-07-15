@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.hpp                                       :+:      :+:    :+:   */
+/*    ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 #include <iostream>
 #include <string>
+#include "ClapTrap.hpp"
 
-class Template
+class ScavTrap : public ClapTrap
 {
-    private:
     public:
-        Template();
-        Template(const Template& temp);
-        Template& operator=(const Template& temp);
-        ~Template();
+        ScavTrap(std::string name);
+        ScavTrap(const ScavTrap& temp);
+        ScavTrap& operator=(const ScavTrap& temp);
+        ~ScavTrap();
+        void        attack(const std::string& target);
+        void        gardGate(void);
+
 };
 
-#endif /*TEMPLATE_HPP*/
+#endif /*SCAVTRAP_HPP*/

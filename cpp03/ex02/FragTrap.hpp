@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*    FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/10 14:29:05 by esilva-s         ###   ########.fr       */
+/*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
+/*   Updated: 2023/07/10 14:29:00 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
-Template::Template()
+#include <iostream>
+#include <string>
+#include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-    
-}
+    public:
+        FragTrap(std::string name);
+        FragTrap(const FragTrap& temp);
+        FragTrap& operator=(const FragTrap& temp);
+        ~FragTrap();
+        void    attack(const std::string& target);
+        void    highFivesGuys(void);
 
-Template::Template(const Template& temp)
-{
+};
 
-}
-
-Template &Template::operator=(const Template& temp)
-{
-    
-}
-
-Template::~Template()
-{
-    
-}
+#endif /*FRAGTRAP_HPP*/

@@ -6,16 +6,16 @@
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
-#    Updated: 2023/06/13 21:15:40 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/07/15 15:20:17 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = template
+NAME = ScavTrap
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-INCLUDES = Template.hpp
-SRC = main.cpp Template.cpp
+INCLUDES = ClapTrap.hpp ScavTrap.hpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBG = $(SRC:.cpp=.o)
 
 all: $(NAME)
