@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/15 16:34:59 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:15:17 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void    clap(ClapTrap &obj)
     line("Init Clap");
     obj.status();
     line("");
-    obj.attack("capital");
+    obj.attack("trapton");
     obj.takeDamage(3);
     obj.beRepaired(6);
     line("");
@@ -41,7 +41,7 @@ void    scav(ScavTrap &obj)
     line("Init Scav");
     obj.status();
     line("");
-    obj.attack("Czar");
+    obj.attack("trapton");
     obj.takeDamage(3);
     obj.beRepaired(6);
     obj.gardGate();
@@ -52,11 +52,11 @@ void    scav(ScavTrap &obj)
 
 int main()
 {
-    ClapTrap marx("marx");
+    ClapTrap clapton("clapton");
     line("=");
-    ScavTrap lenin("lenin");
+    ScavTrap scavton("scavton");
     
-    clap(marx);
-    scav(lenin);
+    clap(clapton);
+    scav(scavton);
     return(0);
 }

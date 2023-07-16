@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/15 16:45:55 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:23:14 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void    FragTrap::attack(const std::string& target)
 
 void FragTrap::highFivesGuys(void)
 {
-    std::cout << "Hi Guys" << std::endl;
+    std::cout << "Hi Guys, high Five!" << std::endl;
 }

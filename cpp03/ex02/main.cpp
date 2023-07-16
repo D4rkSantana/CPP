@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/15 16:55:08 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:16:32 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    clap(ClapTrap &obj)
     line("Init Clap");
     obj.status();
     line("");
-    obj.attack("capital");
+    obj.attack("trapton");
     obj.takeDamage(3);
     obj.beRepaired(6);
     line("");
@@ -42,7 +42,7 @@ void    scav(ScavTrap &obj)
     line("Init Scav");
     obj.status();
     line("");
-    obj.attack("Czar");
+    obj.attack("trapton");
     obj.takeDamage(3);
     obj.beRepaired(6);
     obj.gardGate();
@@ -56,7 +56,7 @@ void    frag(FragTrap &obj)
     line("Init Frag");
     obj.status();
     line("");
-    obj.attack("Imperialism");
+    obj.attack("trapton");
     obj.takeDamage(3);
     obj.beRepaired(6);
     obj.highFivesGuys();
@@ -67,14 +67,14 @@ void    frag(FragTrap &obj)
 
 int main()
 {
-    ClapTrap marx("marx");
+    ClapTrap clapton("clapton");
     line("=");
-    ScavTrap lenin("lenin");
+    ScavTrap scavton("scavton");
     line("=");
-    FragTrap mao("mao");
+    FragTrap fragton("fragton");
     
-    clap(marx);
-    scav(lenin);
-    frag(mao);
+    clap(clapton);
+    scav(scavton);
+    frag(fragton);
     return(0);
 }

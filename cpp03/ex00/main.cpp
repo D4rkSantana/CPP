@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/15 16:29:43 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:14:07 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    clap(ClapTrap &obj)
 
 int main()
 {
-    ClapTrap clapton("marx");
+    ClapTrap clapton("clapton");
 
     clap(clapton);
     return(0);
