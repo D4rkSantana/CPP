@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.hpp                                       :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef WrongAnimal_HPP
+#define WrongAnimal_HPP
 
 #include <iostream>
 #include <string>
 
-class Template
+class WrongAnimal
 {
-    private:
+    protected:
+        std::string type;
     public:
-        Template();
-        Template(const Template& temp);
-        Template& operator=(const Template& temp);
-        ~Template();
+        WrongAnimal();
+        WrongAnimal(const WrongAnimal& temp);
+        WrongAnimal& operator=(const WrongAnimal& temp);
+        ~WrongAnimal();
+        std::string getType(void) const;
+        void makeSound(void) const;
 };
 
-#endif /*TEMPLATE_HPP*/
+#endif /*WrongAnimal_HPP*/

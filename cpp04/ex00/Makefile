@@ -6,16 +6,16 @@
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
-#    Updated: 2023/06/13 21:15:40 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/07/17 14:07:59 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = template
+NAME = animals
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-INCLUDES = Template.hpp
-SRC = main.cpp Template.cpp
+INCLUDES = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp test.hpp
+SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp test.cpp
 OBG = $(SRC:.cpp=.o)
 
 all: $(NAME)
