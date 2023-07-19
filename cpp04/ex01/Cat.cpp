@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*   Cat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:15 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:09:25 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#include "Cat.hpp"
 
-Template::Template()
+Cat::Cat() : Animal()
 {
-    std::cout << "Template was created" << std::endl;
+    this->type = "Cat";
+    std::cout << "Cat was created" << std::endl;
 }
 
-Template::Template(const Template& temp)
+Cat::Cat(const Cat& temp) : Animal()
 {
     *this = temp;
-    std::cout << "Template was copied" << std::endl;
+    std::cout << "Cat was copied" << std::endl;
 }
 
-Template &Template::operator=(const Template& temp)
+Cat &Cat::operator=(const Cat& temp)
 {
-    std::cout << "Template has been assigned" << std::endl;
+    this->type = temp.type;
+    std::cout << "Cat has been assigned" << std::endl;
     return (*this);
 }
 
-Template::~Template()
+Cat::~Cat()
 {
-    std::cout << "Template was destroyed" << std::endl;
+    std::cout << "Cat was destroyed" << std::endl;
+}
+
+void Cat::makeSound(void) const
+{
+    std::cout << "Cat sound... Miau..." << std::endl;
 }

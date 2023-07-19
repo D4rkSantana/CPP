@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.hpp                                       :+:      :+:    :+:   */
+/*   Brain.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef Brain_HPP
+#define Brain_HPP
 
 #include <iostream>
 #include <string>
+#include <array>
 
-class Template
+class Brain
 {
     private:
+        std::string *ideias;
     public:
-        Template();
-        Template(const Template& temp);
-        Template& operator=(const Template& temp);
-        ~Template();
+        Brain();
+        Brain(const Brain& temp);
+        Brain& operator=(const Brain& temp);
+        ~Brain();
+        std::string *getIdeias(void) const;
 };
 
-#endif /*TEMPLATE_HPP*/
+#endif /*Brain_HPP*/

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*   Brain.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#include "Brain.hpp"
 
-Template::Template()
+Brain::Brain()
 {
-    
+    this->ideias = new std::string[100];
+    std::cout << "Brain was created" << std::endl;
 }
 
-Template::Template(const Template& temp)
+Brain::Brain(const Brain& temp)
 {
-    *this = temp;
+    this->ideias = temp.getIdeias();
+    std::cout << "Brain was copied" << std::endl;
 }
 
-Template &Template::operator=(const Template& temp)
-{
+Brain &Brain::operator=(const Brain& temp)
+{   
+    this->ideias = temp.getIdeias();
+    std::cout << "Brain has been assigned" << std::endl;
     return (*this);
 }
 
-Template::~Template()
+Brain::~Brain()
 {
-    
+    delete [] (this->ideias);
+    std::cout << "Brain was destroyed" << std::endl;
+}
+
+std::string *Brain::getIdeias(void) const
+{
+    return(this->ideias);
 }

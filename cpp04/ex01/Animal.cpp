@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*   Animal.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:15 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:09:25 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#include "Animal.hpp"
 
-Template::Template()
+Animal::Animal()
 {
-    std::cout << "Template was created" << std::endl;
+    this->type = "animal";
+    std::cout << "Animal was created" << std::endl;
 }
 
-Template::Template(const Template& temp)
+Animal::Animal(const Animal& temp)
 {
     *this = temp;
-    std::cout << "Template was copied" << std::endl;
+    std::cout << "Animal was copied" << std::endl;
 }
 
-Template &Template::operator=(const Template& temp)
+Animal &Animal::operator=(const Animal& temp)
 {
-    std::cout << "Template has been assigned" << std::endl;
+    this->type = temp.type;
+    std::cout << "Animal has been assigned" << std::endl;
     return (*this);
 }
 
-Template::~Template()
+Animal::~Animal()
 {
-    std::cout << "Template was destroyed" << std::endl;
+    std::cout << "Animal was destroyed" << std::endl;
+}
+
+std::string Animal::getType(void) const
+{
+    return (this->type);
+}
+
+void Animal::makeSound(void) const
+{
+    std::cout << "Animal sound... ???..." << std::endl;
 }

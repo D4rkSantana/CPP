@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:15 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:20:02 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#include "WrongCat.hpp"
 
-Template::Template()
+WrongCat::WrongCat() : WrongAnimal()
 {
-    std::cout << "Template was created" << std::endl;
+    this->type = "WrongCat";
+    std::cout << "WrongCat was created" << std::endl;
 }
 
-Template::Template(const Template& temp)
+WrongCat::WrongCat(const WrongCat& temp) : WrongAnimal()
 {
     *this = temp;
-    std::cout << "Template was copied" << std::endl;
+    std::cout << "WrongCat was copied" << std::endl;
 }
 
-Template &Template::operator=(const Template& temp)
+WrongCat &WrongCat::operator=(const WrongCat& temp)
 {
-    std::cout << "Template has been assigned" << std::endl;
+    this->type = temp.type;
+    std::cout << "WrongCat has been assigned" << std::endl;
     return (*this);
 }
 
-Template::~Template()
+WrongCat::~WrongCat()
 {
-    std::cout << "Template was destroyed" << std::endl;
+    std::cout << "WrongCat was destroyed" << std::endl;
+}
+
+void WrongCat::makeSound(void) const
+{
+    std::cout << "WrongCat sound... Monday left me broken..." << std::endl;
 }

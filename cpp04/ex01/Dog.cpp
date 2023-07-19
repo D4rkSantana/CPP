@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.cpp                                       :+:      :+:    :+:   */
+/*   Dog.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:15 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:09:25 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Template.hpp"
+#include "Dog.hpp"
 
-Template::Template()
+Dog::Dog() : Animal()
 {
-    std::cout << "Template was created" << std::endl;
+    this->type = "Dog";
+    std::cout << "Dog was created" << std::endl;
 }
 
-Template::Template(const Template& temp)
+Dog::Dog(const Dog& temp) : Animal()
 {
     *this = temp;
-    std::cout << "Template was copied" << std::endl;
+    std::cout << "Dog was copied" << std::endl;
 }
 
-Template &Template::operator=(const Template& temp)
+Dog &Dog::operator=(const Dog& temp)
 {
-    std::cout << "Template has been assigned" << std::endl;
+    this->type = temp.type;
+    std::cout << "Dog has been assigned" << std::endl;
     return (*this);
 }
 
-Template::~Template()
+Dog::~Dog()
 {
-    std::cout << "Template was destroyed" << std::endl;
+    std::cout << "Dog was destroyed" << std::endl;
+}
+
+void Dog::makeSound(void) const
+{
+    std::cout << "Dog sound... Au Au..." << std::endl;
 }
