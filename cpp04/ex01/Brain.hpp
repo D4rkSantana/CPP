@@ -15,18 +15,17 @@
 
 #include <iostream>
 #include <string>
-#include <array>
 
 class Brain
 {
     private:
-        std::string *ideias;
+        std::string *ideas;
     public:
         Brain();
         Brain(const Brain& temp);
         Brain& operator=(const Brain& temp);
         ~Brain();
-        std::string *getIdeias(void) const;
+        std::string *getIdeas(void) const;
 };
 
 #endif /*Brain_HPP*/

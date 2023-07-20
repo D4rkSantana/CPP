@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/17 15:07:09 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:32:42 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ static void subject_test(void)
 
 int main()
 {
+    Brain br;
+    std::string *ar = br.getIdeas();
+    int i = 0;
+
+    for (i = 0; i < 100; i++)
+    {
+        std::cout << "[" << i << "]" << ar[i] << std::endl;
+    }
     my_test();
     std::cout << std::endl;
     subject_test();

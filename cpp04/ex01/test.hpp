@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:02:16 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/17 14:29:01 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:02:33 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 
+#include "Brain.hpp"
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"

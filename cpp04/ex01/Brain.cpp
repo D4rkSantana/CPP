@@ -14,30 +14,36 @@
 
 Brain::Brain()
 {
-    this->ideias = new std::string[100];
+    int index = 0;
+    this->ideas = new std::string[100];
+    while (index < 100)
+    {
+        this->ideas[index] = "ideas"; 
+        index++;
+    }
     std::cout << "Brain was created" << std::endl;
 }
 
 Brain::Brain(const Brain& temp)
 {
-    this->ideias = temp.getIdeias();
+    this->ideas = temp.getIdeas();
     std::cout << "Brain was copied" << std::endl;
 }
 
 Brain &Brain::operator=(const Brain& temp)
 {   
-    this->ideias = temp.getIdeias();
+    this->ideas = temp.getIdeas();
     std::cout << "Brain has been assigned" << std::endl;
     return (*this);
 }
 
 Brain::~Brain()
 {
-    delete [] (this->ideias);
+    delete [] (this->ideas);
     std::cout << "Brain was destroyed" << std::endl;
 }
 
-std::string *Brain::getIdeias(void) const
+std::string *Brain::getIdeas(void) const
 {
-    return(this->ideias);
+    return(this->ideas);
 }
