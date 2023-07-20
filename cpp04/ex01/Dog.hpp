@@ -19,12 +19,17 @@
 
 class Dog : public Animal
 {
+    private:
+        Brain   *brain;
     public:
         Dog();
         Dog(const Dog& temp);
         Dog& operator=(const Dog& temp);
         ~Dog();
         void makeSound(void) const;
+        void printIdeas(void) const;
+        void setIdeas(std::string idea);
+        void setIdeas(std::string idea, int i);
 };
 
 #endif /*Dog_HPP*/

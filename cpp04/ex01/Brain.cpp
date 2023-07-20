@@ -47,3 +47,23 @@ std::string *Brain::getIdeas(void) const
 {
     return(this->ideas);
 }
+
+std::string Brain::getIdea(int i) const
+{
+    if (i < 0 || i > 99)
+        return ("");
+    return(this->ideas[i]);
+}
+
+void Brain::setIdeas(std::string idea)
+{
+    int index;
+
+    for(index = 0; index < 100; index++)
+        this->ideas[index] = idea;
+}
+
+void Brain::setIdeas(std::string idea, int i)
+{
+    this->ideas[i] = idea;
+}

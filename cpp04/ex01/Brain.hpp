@@ -26,6 +26,9 @@ class Brain
         Brain& operator=(const Brain& temp);
         ~Brain();
         std::string *getIdeas(void) const;
+        std::string getIdea(int i) const;
+        void setIdeas(std::string idea);
+        void setIdeas(std::string idea, int i);
 };
 
 #endif /*Brain_HPP*/

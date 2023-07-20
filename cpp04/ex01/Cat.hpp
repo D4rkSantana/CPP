@@ -16,15 +16,22 @@
 #include <iostream>
 #include <string>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
+    private:
+        Brain   *brain;
     public:
         Cat();
         Cat(const Cat& temp);
         Cat& operator=(const Cat& temp);
         ~Cat();
         void makeSound(void) const;
+        void printIdeas(void) const;
+        virtual void setIdeas(std::string idea);
+        void setIdeas(std::string idea, int i);
+
 };
 
 #endif /*Cat_HPP*/

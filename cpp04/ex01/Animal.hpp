@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include "Brain.hpp"
 
 class Animal
 {
@@ -27,6 +28,9 @@ class Animal
         virtual ~Animal();
         virtual std::string getType(void) const;
         virtual void makeSound(void) const;
+        virtual void printIdeas(void) const = 0;
+        virtual void setIdeas(std::string idea) = 0;
+        virtual void setIdeas(std::string idea, int i) = 0;
 };
 
 #endif /*Animal_HPP*/
