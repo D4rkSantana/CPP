@@ -15,8 +15,9 @@
 static void my_test(void)
 {
     std::cout << "\n== Inicio dos Testes ===\n";
+    std::cout << "\n===== Teste Array ======\n";
     test_array();
-    std::cout << "\n========================\n";
+    std::cout << "\n===== Teste Copy =======\n";
     test_copy();
     std::cout << "\n========================\n";
 }

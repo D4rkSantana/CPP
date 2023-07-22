@@ -20,22 +20,23 @@ void    line(void)
 void    test_array(void)
 {
     int i;
-    Animal  *obj[10];
+    int qt = 6;
+    Animal  *obj[qt];
 
-    std::cout << "---Alocando os Objetos--\n";
-    for(i = 0; i < 10; i++)
+    std::cout << "\n---Alocando os Objetos--\n";
+    for(i = 0; i < qt; i++)
     {
+        std::cout << "\n--- Obj [" << i << "] ---" << std::endl;
         if (i % 2 == 0)
             obj[i] = new Dog;
         else
             obj[i] = new Cat;
-        line();
     }
-    std::cout << "-Desalocando os Objetos-\n";
-    for(i = 0; i < 10; i++)
+    std::cout << "\n-Desalocando os Objetos-\n";
+    for(i = 0; i < qt; i++)
     {
+        std::cout << "\n--- Obj [" << i << "] ---" << std::endl;
         delete obj[i];
-        line();
     }
 }
     
@@ -43,31 +44,36 @@ void    test_copy(void)
 {
     int i;
     
-    std::cout << "--------Objeto 1--------\n";
+    std::cout << "\n--------Objeto 1--------\n";
     Dog *obj1 = new Dog;
     
     for(i = 0; i < 10; i++)
         obj1->setIdeas("objeto", i);
 
-    std::cout << "--------Objeto 2--------\n";
+    std::cout << "\n--------Objeto 2--------\n";
     Dog *obj2 = new Dog(*obj1);
 
 
-    std::cout << "--------Ideas obj1------\n";
+    std::cout << "\n--------Ideas obj1------\n";
     for(i = 0; i < 10; i++)
         std::cout << "objeto 1 [" << i << "]: " << obj1->getIdea(i) << std::endl;
-    std::cout << "--------Ideas obj2------\n";
+    std::cout << "\n--------Ideas obj2------\n";
     for(i = 0; i < 10; i++)
         std::cout << "objeto 2 [" << i << "]: " << obj2->getIdea(i) << std::endl;
     
-    std::cout << "------Mudanca obj1------\n";
+    std::cout << "\n------Mudanca obj1------\n";
     for(i = 0; i < 10; i++)
         obj1->setIdeas("objeto errado", i);
 
-    std::cout << "--------Ideas obj1------\n";
+    std::cout << "\n--------Ideas obj1------\n";
     for(i = 0; i < 10; i++)
         std::cout << "objeto 1 [" << i << "]: " << obj1->getIdea(i) << std::endl;
-    std::cout << "--------Ideas obj2------\n";
+    std::cout << "\n--------Ideas obj2------\n";
     for(i = 0; i < 10; i++)
         std::cout << "objeto 2 [" << i << "]: " << obj2->getIdea(i) << std::endl;
+
+    std::cout << "\n-------Delete Obj1------\n";
+    delete obj1;
+    std::cout << "\n-------Delete Obj2------\n";
+    delete obj2;
 }
