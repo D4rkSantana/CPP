@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:02:16 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/11 18:11:17 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:57:00 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 void    line(void);
 void    test_array(void);
 void    test_copy(void);
+void    test_assign(void);
 
 #endif /*TEST_HPP*/

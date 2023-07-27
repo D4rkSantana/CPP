@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:02:30 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/27 18:53:50 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:59:11 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void    test_assign(void)
     for(i = 0; i < 10; i++)
         std::cout << "objeto 2 [" << i << "]: " << obj2->getIdea(i) << std::endl;
 
+    std::cout << "\n-------Delete Obj1------\n";
     delete obj1;
+    std::cout << "\n-------Delete Obj2------\n";
     delete obj2;
 }
