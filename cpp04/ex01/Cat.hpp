@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Cat_HPP
-#define Cat_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
 #include <iostream>
 #include <string>
@@ -36,4 +36,4 @@ class Cat : public Animal
 
 };
 
-#endif /*Cat_HPP*/
+#endif /*CAT_HPP*/

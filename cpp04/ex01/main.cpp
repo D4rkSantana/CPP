@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/11 18:10:53 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:52:00 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void my_test(void)
     test_array();
     std::cout << "\n===== Teste Copy =======\n";
     test_copy();
+    std::cout << "\n===== Teste assign =====\n";
+    test_assign();
     std::cout << "\n========================\n";
 }
 
