@@ -41,6 +41,7 @@ Dog &Dog::operator=(const Dog& temp)
 
     std::cout << "Dog has been assigned" << std::endl;
     this->type = temp.type;
+    delete this->brain;
     this->brain = new Brain;
     for (i = 0; i < 100; i++)
     {

@@ -41,6 +41,7 @@ Cat &Cat::operator=(const Cat& temp)
 
     std::cout << "Cat has been assigned" << std::endl;
     this->type = temp.type;
+    delete this->brain;
     this->brain = new Brain;
     for (i = 0; i < 0; i++)
     {

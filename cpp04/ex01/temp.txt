@@ -1,0 +1,53 @@
+  Cat& operator=(const Cat& temp);
+        Cat& operator=(const Dog& temp);
+        Cat& operator=(const Animal& temp);
+
+         Brain *getBrain(void) const;
+
+         Brain *Cat::getBrain(void) const
+{
+    return (this->brain);
+}
+
+Cat &Cat::operator=(const Cat& temp)
+{
+    int i;
+    std::string temp_str;
+
+    std::cout << "Cat has been assigned" << std::endl;
+    this->type = temp.getType();
+    delete this->brain;
+    this->brain = new Brain;
+    for (i = 0; i < 100; i++)
+    {
+        temp_str = temp.brain->getIdea(i);
+        this->brain->setIdeas(temp_str, i);
+    }
+    return (*this);
+}
+
+Cat &Cat::operator=(const Dog& temp)
+{
+    int i;
+    std::string temp_str;
+
+    std::cout << "Cat has been assigned" << std::endl;
+    this->type = temp.getType();
+    delete this->brain;
+    this->brain = new Brain;
+    for (i = 0; i < 100; i++)
+    {
+        temp_str = temp.getIdea(i);
+        this->brain->setIdeas(temp_str, i);
+    }
+    return (*this);
+}
+
+Cat &Cat::operator=(const Animal& temp)
+{
+    std::string temp_str;
+
+    std::cout << "Cat has been assigned" << std::endl;
+    this->type = temp.getType();
+    return (*this);
+}
