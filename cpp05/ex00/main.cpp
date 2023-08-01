@@ -79,10 +79,26 @@ void    terceiro_teste(void)
     }
 }
 
+void    quarto_teste(void)
+{
+    std::cout << "\n====== Quarto Teste ========\n";
+
+    Bureaucrat obj("Ciclano", 100);
+    Bureaucrat obj2(obj);
+    Bureaucrat obj3("Deltano", 44);
+
+    obj3 = obj;
+
+    std::cout << "obj1: " << obj << std::endl;
+    std::cout << "obj2: " << obj2 << std::endl;
+    std::cout << "obj3: " << obj3 << std::endl;
+}
+
 int main()
 {
     primeiro_teste();
     segundo_teste();
     terceiro_teste();
+    quarto_teste();
     return(0);
 }

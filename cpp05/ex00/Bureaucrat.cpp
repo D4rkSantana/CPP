@@ -26,7 +26,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(
     std::cout << "Bureaucrat was created" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& temp)
+Bureaucrat::Bureaucrat(const Bureaucrat& temp) : _name(temp.getName())
 {
     std::cout << "Bureaucrat was copied" << std::endl;
     this->_grade = temp.getGrade();
@@ -80,6 +80,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream&   operator<<( std::ostream &out, const Bureaucrat &ref)
 {
-    out << ref.getName() << ", bureaucrat grade " << ref.getGrade() << ".\n";
+    out << ref.getName() << ", bureaucrat grade " << ref.getGrade() << ".";
     return (out);
 }
