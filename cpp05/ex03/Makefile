@@ -6,7 +6,7 @@
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
-#    Updated: 2023/08/21 23:56:12 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/08/21 23:57:55 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME = Bureaucrat
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-INCLUDES = Bureaucrat.hpp Form.hpp
-SRC = main.cpp Bureaucrat.cpp Form.cpp
-OBG = $(SRC:.cpp=.o)
+INCLUDES = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+OBG = $(SRC:.cpp=.o) 
 
 
 all: $(NAME)

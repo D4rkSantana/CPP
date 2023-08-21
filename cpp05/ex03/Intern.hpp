@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                       :+:      :+:    :+:   */
+/*   Intern.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,43 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Bureaucrat_HPP
-#define Bureaucrat_HPP
+#ifndef Intern_HPP
+#define Intern_HPP
 
 #include <iostream>
 #include <exception>
 #include <string>
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-class Bureaucrat
+class AForm;
+
+class Intern
 {
-    private:
-        const std::string   _name;
-        int                 _grade;
-
     public:
-        Bureaucrat();
-        Bureaucrat(std::string name, int grade);
-        Bureaucrat(const Bureaucrat& temp);
-        Bureaucrat& operator=(const Bureaucrat& temp);
-        ~Bureaucrat();
-        std::string getName(void) const;
-        int         getGrade(void) const;
-        void        incrementGrade(void);
-        void        decrementGrade(void);
+        Intern();
+        Intern(const Intern& temp);
+        Intern& operator=(const Intern& temp);
+        ~Intern();
 
-        class GradeTooHighException : public std::exception
-        {
-            public:
-               virtual  const char* what() const throw();
-        };
+        AForm *makeShrubbery(std::string target);
+        AForm *makeRobotomy(std::string target);
+        AForm *makePardon(std::string target);
 
-        class GradeTooLowException :    public std::exception
+        AForm *makeForm(std::string, std::string);
+
+        class FormNotFound : public std::exception
         {
             public:
                 virtual const char* what() const throw();
         };
 };
 
-std::ostream&   operator<<( std::ostream &out, const Bureaucrat &ref);
+std::ostream&   operator<<( std::ostream &out, const Intern &ref);
 
-#endif /*Bureaucrat_HPP*/
+#endif /*Intern_HPP*/

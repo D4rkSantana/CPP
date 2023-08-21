@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/11 16:50:16 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/08/21 23:55:38 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ void    primeiro_teste(void)
 void    segundo_teste(void)
 {
     std::cout << "\n======= Segundo Teste ========\n";
-
-    Bureaucrat obj("Beltrano", 1);
-
-    std::cout << "\nName: " << obj.getName() << " Grade: " << obj.getGrade() << std::endl;
-
+// -9 de core dumped
+Bureaucrat obj("Beltrano", -20);
     try{
+		
+
+    	std::cout << "\nName: " << obj.getName() << " Grade: " << obj.getGrade() << std::endl;
+
         obj.incrementGrade();
     }
     catch (std::exception & e){
@@ -55,15 +56,8 @@ void    segundo_teste(void)
         std::cout << e.what() << std::endl;
     }
 
-    try{
-        obj.decrementGrade();
-    }
-    catch (std::exception & e){
-        std::cout << "= Decrement Error\n";
-        std::cout << e.what() << std::endl;
-    }
 
-    std::cout << obj << std::endl;
+
 }
 
 void    terceiro_teste(void)
@@ -97,7 +91,7 @@ void    quarto_teste(void)
 int main()
 {
     primeiro_teste();
-    segundo_teste();
+   // segundo_teste();
     terceiro_teste();
     quarto_teste();
     return(0);

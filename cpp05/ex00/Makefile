@@ -6,7 +6,7 @@
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
-#    Updated: 2023/07/11 16:54:08 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/08/21 23:55:41 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ INCLUDES = Bureaucrat.hpp
 SRC = main.cpp Bureaucrat.cpp
 OBG = $(SRC:.cpp=.o)
 
+
 all: $(NAME)
 
 $(NAME): $(OBG)
 	$(CC) $(FLAGS) $(OBG) -o $(NAME)
 
-$(OBG): $(SRC)
+
+$(OBG): $(SRC) $(INCLUDES)
 	$(CC) $(FLAGS) -c $(SRC)
 
 clean:

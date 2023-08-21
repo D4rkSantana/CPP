@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                       :+:      :+:    :+:   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:15 by esilva-s         ###   ########.fr       */
+/*   Created: 2023/08/21 23:55:51 by esilva-s          #+#    #+#             */
+/*   Updated: 2023/08/21 23:55:54 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : _name("Default"), _signed(false), _gradeSign(150), _gradeExe(150)
+Form::Form() : _name("Frank"), _gradeExec(150), _gradeSigned(100)
 {
-    std::cout << "Form Default was created" << std::endl;
+    std::cout << "Form was created" << std::endl;
+	this->_signed = false;
 }
 
-Form::Form(const std::string name, int gradeSign, int gradeExe) : _name(name), _gradeSign(gradeSign), _gradeExe(gradeExe)
+Form::Form(const std::string name, int gradeSigned, int gradeExec) : _name(name), _gradeExec(gradeExec), _gradeSigned(gradeSigned)
 {
-    if (gradeSign < 1 || gradeExe < 1)
+	
+    if (gradeExec < 1 || gradeSigned < 1)
         throw Form::GradeTooHighException();
-    if (gradeSign > 150 || gradeExe > 150)
-        throw Form::GradeTooLowException();
-    this->_signed = false;
-    std::cout << "Form " << name << " was created" << std::endl;
-}
+    if (gradeExec > 150 || gradeSigned > 150)
+		throw Form::GradeTooLowException();
 
-Form::Form(const Form &temp) : _name(temp.getName()), _gradeSign(temp.getGradeSign()), _gradeExe(temp.getGradeExe())
+	
+    std::cout << "Form was created" << std::endl;
+	this->_signed = false;
+}
+//duvida: signed eh falso?
+Form::Form(const Form& temp) : _name(temp.getName()), _gradeExec(temp.getGradeExec()), _gradeSigned(temp.getGradeSigned())
 {
-    this->_signed = temp.getSign();
+	this->_signed = temp.getSigned();
     std::cout << "Form was copied" << std::endl;
 }
 
@@ -38,10 +42,11 @@ Form::~Form()
     std::cout << "Form was destroyed" << std::endl;
 }
 
+//Duvida: tem que ter outros get? 
 Form &Form::operator=(const Form& temp)
 {
     std::cout << "Form has been assigned" << std::endl;
-    this->_signed = temp.getSign();
+    this->_signed = temp.getSigned();
     return (*this);
 }
 
@@ -50,41 +55,49 @@ std::string Form::getName(void) const
     return (this->_name);
 }
 
-bool         Form::getSign(void) const
+int       Form::getGradeExec(void) const
+{
+    return (this->_gradeExec);
+}
+
+int   Form::getGradeSigned(void) const
+{
+    return (this->_gradeSigned);
+}
+
+bool   Form::getSigned(void) const
 {
     return (this->_signed);
 }
 
-int         Form::getGradeSign(void) const
-{
-    return (this->_gradeSign);
-}
 
-int         Form::getGradeExe(void) const
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
-    return (this->_gradeExe);
-}
+	
+	if (bureaucrat.getGrade() <= this->getGradeSigned())
+	{
+		this->_signed = true;
+	}
+	else
+		throw Form::GradeTooLowException();
 
-void        Form::beSigned(const Bureaucrat &ref)
-{
-    if (ref.getGrade() <= this->_gradeSign)
-        this->_signed = true;
-    else
-        throw Form::GradeTooLowException();
-}
+} 
+
+
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return ("Graduation too high, graduation must be between 1 and 150");
+    return ("Graduation too high");
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return ("Graduation too low, graduation must be between 1 and 150");
+    return ("Graduation too low");
 }
 
 std::ostream&   operator<<( std::ostream &out, const Form &ref)
 {
-    out << ref.getName() << " Form need " << ref.getGradeSign() << " grade to be signed and " << ref.getGradeExe() << " to execute.";
+    out << ref.getName() << ", Form grade to signed " << ref.getGradeSigned() <<  ", Form grade to execute " << ref.getGradeExec() << ", Form is  signed? " << ref.getSigned() <<"." ;
+
     return (out);
 }
