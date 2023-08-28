@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:15 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/08/29 00:25:47 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ Template &Template::operator=(const Template& temp)
 Template::~Template()
 {
     std::cout << "Template was destroyed" << std::endl;
+}
+
+std::ostream&   operator<<( std::ostream &out, const Template &ref)
+{
+	(void)ref;
+    out << "Template ";
+    return (out);
 }
