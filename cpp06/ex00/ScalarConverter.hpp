@@ -15,10 +15,17 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
+#include <cstdlib>
 
 class ScalarConverter
 {
     private:
+        bool _isChar;
+        bool _isInt;
+        bool _isFloat;
+        bool _isDouble;
+
     public:
         ScalarConverter();
         ScalarConverter(const ScalarConverter& temp);
