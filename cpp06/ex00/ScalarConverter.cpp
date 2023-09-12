@@ -121,6 +121,8 @@ static void printChar(const std::string &literal)
     }
     else if (this->_isDouble)
     {
+        
+    }
     else
         std::cout << "Error" << std::endl;
 }
