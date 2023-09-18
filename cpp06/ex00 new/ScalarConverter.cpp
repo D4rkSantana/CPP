@@ -130,6 +130,7 @@ static void printFloat(const std::string &literal)
 static void printDouble(const std::string &literal)
 {
 }
+
 //========================= check =====================//
 bool checkPseudo(const std::string &literal)
 {
