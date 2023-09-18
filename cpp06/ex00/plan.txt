@@ -1,0 +1,15 @@
+-> string literal
+
+* verifica se é um nan ou inf
+
+- -> string literal para _printChar
+
+* verifica se é um numero valido (se contem muitas letras, espaços ou sinais)
+
+* convert string literal para longlong
+
+- -> longlong para _printInt
+
+- -> longlong para _printFloat
+
+- -> longlong para _printDouble
