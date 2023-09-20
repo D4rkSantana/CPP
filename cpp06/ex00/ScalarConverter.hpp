@@ -17,14 +17,12 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <cctype> //tolower, isdigit
+#include <iomanip> //setprecision
 
 class ScalarConverter
 {
     private:
-        bool _isChar;
-        bool _isInt;
-        bool _isFloat;
-        bool _isDouble;
 
     public:
         ScalarConverter();
@@ -36,5 +34,7 @@ class ScalarConverter
 };
 
 std::ostream&   operator<<( std::ostream &out, const ScalarConverter &ref);
+
+std::string	string_tolower(std::string input);
 
 #endif /*ScalarConverter_HPP*/
