@@ -17,7 +17,7 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
-#include <cctype> //tolower, isdigit
+#include <cctype> //tolower, isdigit, isprint
 #include <iomanip> //setprecision
 
 class ScalarConverter

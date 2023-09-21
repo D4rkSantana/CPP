@@ -109,6 +109,12 @@ void    printOriginChar(const std::string &literal)
 
 bool    printOriginNumeric(const std::string &literal)
 {
+    char *endPtr;
+    long double ld_aux = static_cast<long double>(std::strtod(literal.c_str(), &endPtr));
+    if (*endPtr != '\0')
+        return (true);
+    
+
     char outChar;
     //int outInt = static_cast<int>(std::atoi(literal.c_str()));
     //float outFloat = static_cast<float>(std::atof(literal.c_str()));
