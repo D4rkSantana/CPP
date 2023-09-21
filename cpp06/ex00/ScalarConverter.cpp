@@ -97,7 +97,7 @@ char    checkType(const std::string &literal)
 void    printOriginChar(const std::string &literal)
 {
     char outChar = static_cast<char>(literal[0]);
-    int outInt = static_cast<int>(literal[0] - '0');
+    int outInt = static_cast<int>(literal[0]);
     float outFloat = static_cast<float>(outInt);
     double outDouble = static_cast<double>(outInt);
 
@@ -107,12 +107,21 @@ void    printOriginChar(const std::string &literal)
     std::cout << std::fixed << std::setprecision(1) << "double: " << outDouble << std::endl;
 }
 
-void    printOriginNumeric(const std::string &literal)
+bool    printOriginNumeric(const std::string &literal)
 {
     char outChar;
-    int outInt = static_cast<int>(std::atoi(literal.c_str()));
-    float outFloat = static_cast<float>(std::atof(literal.c_str()));
-    double outDouble = static_cast<double>(std::atof(literal.c_str()));
+    //int outInt = static_cast<int>(std::atoi(literal.c_str()));
+    //float outFloat = static_cast<float>(std::atof(literal.c_str()));
+
+    char *return_strtod1;
+    int outInt = static_cast<int>(std::strtod(literal.c_str(), &return_strtod1));
+    char *return_strtod2;
+    float outFloat = static_cast<float>(std::strtod(literal.c_str(), &return_strtod2));
+
+    char *return_strtod;
+    double outDouble = static_cast<double>(std::strtod(literal.c_str(), &return_strtod));
+    if (*return_strtod != '\0')
+        return (false);
 
     if (outInt > 31 && outInt < 127)
     {
@@ -124,6 +133,7 @@ void    printOriginNumeric(const std::string &literal)
     std::cout << "int: " << outInt << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "float: " << outFloat << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << outDouble << std::endl;
+    return (true);
 }
 //========================= converter main =========================//
 
@@ -143,7 +153,10 @@ void ScalarConverter::convert(const std::string &literal)
     else if (result == 'c')
         printOriginChar(literal);
     else if (result == 'n')
-        printOriginNumeric(literal);
+    {
+        if (!printOriginNumeric(literal))
+            std::cout << "An error occurred, please try again using an int, char, float or double literal\n";
+    }
 }
 
 /*

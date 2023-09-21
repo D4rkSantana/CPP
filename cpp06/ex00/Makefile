@@ -6,11 +6,11 @@
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
-#    Updated: 2023/09/19 21:15:34 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/09/20 20:57:02 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScalarConverter
+NAME = converter
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 

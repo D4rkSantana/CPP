@@ -6,11 +6,28 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/09/19 21:36:30 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:56:24 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+static bool checkInput(std::string input)
+{
+    size_t index = 0;
+
+    if (input.empty())
+        return (true);
+
+    while (index < input.size())
+    {
+        if (std::isprint(input[index]))
+            index++;
+        else
+            return (true);
+    }
+    return (false);
+}
 
 int main(int argc,char **argv)
 {
@@ -19,8 +36,10 @@ int main(int argc,char **argv)
         std::cout << "use exactly 1 argument" << std::endl;
         return (0);
     }
-
     std::string input = argv[1];
-	ScalarConverter::convert(input);
+    if (checkInput(input))
+        std::cout << "Digite um argumento valido" << std::endl;
+    else
+	    ScalarConverter::convert(input);
     return(0);
 }
