@@ -17,6 +17,9 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <cfloat> //limits for float and double;
+#include <climits> //limits for int;
+#include <cmath> //floor
 #include <cctype> //tolower, isdigit, isprint
 #include <iomanip> //setprecision
 

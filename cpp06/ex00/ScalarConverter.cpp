@@ -101,44 +101,57 @@ void    printOriginChar(const std::string &literal)
     float outFloat = static_cast<float>(outInt);
     double outDouble = static_cast<double>(outInt);
 
-    std::cout << "char: \'" << outChar << "\'" << std::endl;
-    std::cout << "int: " << outInt << std::endl;
-    std::cout << std::fixed << std::setprecision(1) << "float: " << outFloat << "f" << std::endl;
+    std::cout << "char:   \'" << outChar << "\'" << std::endl;
+    std::cout << "int:    " << outInt << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << "float:  " << outFloat << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << outDouble << std::endl;
 }
 
 bool    printOriginNumeric(const std::string &literal)
 {
-    char *endPtr;
-    long double ld_aux = static_cast<long double>(std::strtod(literal.c_str(), &endPtr));
-    if (*endPtr != '\0')
-        return (true);
-    
-
     char outChar;
-    //int outInt = static_cast<int>(std::atoi(literal.c_str()));
-    //float outFloat = static_cast<float>(std::atof(literal.c_str()));
+    int outInt = 0;
+    float outFloat = 0;
+    double outDouble = 0;
 
-    char *return_strtod1;
-    int outInt = static_cast<int>(std::strtod(literal.c_str(), &return_strtod1));
-    char *return_strtod2;
-    float outFloat = static_cast<float>(std::strtod(literal.c_str(), &return_strtod2));
-
-    char *return_strtod;
-    double outDouble = static_cast<double>(std::strtod(literal.c_str(), &return_strtod));
-    if (*return_strtod != '\0')
+    char *endPtr;
+    long double ld_aux = std::strtold(literal.c_str(), &endPtr);
+    if (*endPtr != '\0')
         return (false);
+    ld_aux = std::floor(ld_aux * 100.0) / 100.0; 
+    std::cout << ld_aux << std::endl;
 
-    if (outInt > 31 && outInt < 127)
+    if (ld_aux >= 32.0 && ld_aux <= 126.0)
     {
-        outChar = static_cast<char>(outInt);
-        std::cout << "char: \'" << outChar << "\'" << std::endl;
+        outChar = static_cast<char>(ld_aux);
+        std::cout << "char:   \'" << outChar << "\'" << std::endl;
     }
     else
-        std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << outInt << std::endl;
-    std::cout << std::fixed << std::setprecision(1) << "float: " << outFloat << "f" << std::endl;
-    std::cout << std::fixed << std::setprecision(1) << "double: " << outDouble << std::endl;
+        std::cout << "char:   Non displayable" << std::endl;
+
+    if (ld_aux >= INT_MIN && ld_aux <= INT_MAX)
+    {
+        outInt = static_cast<int>(ld_aux);
+        std::cout << "int:    " << outInt << std::endl;
+    }
+    else
+        std::cout << "int:    " << "the range has been exceeded\n";
+
+    if (ld_aux >= -FLT_MAX && ld_aux <= FLT_MAX)
+    {
+        outFloat = static_cast<float>(ld_aux);
+        std::cout << std::fixed << std::setprecision(1) << "float:  " << outFloat << "f\n";
+    }
+    else
+        std::cout << "float:  " << "the range has been exceeded\n";
+
+    if (ld_aux <= DBL_MAX && ld_aux >= -DBL_MAX)
+    {
+        outDouble = static_cast<double>(ld_aux);
+        std::cout << std::fixed << std::setprecision(1) << "double: " << outDouble << std::endl;
+    }
+    else
+        std::cout << "double: " << "the range has been exceeded\n";
     return (true);
 }
 //========================= converter main =========================//
