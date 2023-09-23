@@ -6,7 +6,7 @@
 #    By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/13 21:13:33 by esilva-s          #+#    #+#              #
-#    Updated: 2023/09/20 20:57:02 by esilva-s         ###   ########.fr        #
+#    Updated: 2023/09/23 11:12:36 by esilva-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
 INCLUDES = ScalarConverter.hpp
-SRC = main.cpp ScalarConverter.cpp scalar_tools.cpp
+SRC = main.cpp ScalarConverter.cpp scalar_checkType.cpp scalar_convertOrigin.cpp
 OBG = $(SRC:.cpp=.o)
 
 all: $(NAME)

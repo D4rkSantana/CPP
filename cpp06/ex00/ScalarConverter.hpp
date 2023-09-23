@@ -38,6 +38,7 @@ class ScalarConverter
 
 std::ostream&   operator<<( std::ostream &out, const ScalarConverter &ref);
 
-std::string	string_tolower(std::string input);
+char            checkType(const std::string &literal);
+void            convertOrigin(char key, const std::string &literal);
 
 #endif /*ScalarConverter_HPP*/

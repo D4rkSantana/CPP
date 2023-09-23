@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/09/20 20:56:24 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/09/23 10:36:44 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(int argc,char **argv)
     }
     std::string input = argv[1];
     if (checkInput(input))
-        std::cout << "Digite um argumento valido" << std::endl;
+        std::cout << "type a valid argument" << std::endl;
     else
 	    ScalarConverter::convert(input);
     return(0);
