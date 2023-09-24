@@ -25,6 +25,7 @@ Serializer::Serializer(const Serializer& temp)
 
 Serializer &Serializer::operator=(const Serializer& temp)
 {
+    (void)temp;
     std::cout << "Serializer has been assigned" << std::endl;
     return (*this);
 }
@@ -41,12 +42,23 @@ std::ostream&   operator<<( std::ostream &out, const Serializer &ref)
     return (out);
 }
 
-uintptr_t   Serializer::serialize(Data* ptr)
+uintptr_t   Serializer::serialize(t_data* ptr)
 {
+    uintptr_t result;
+    if (ptr == NULL)
+        return (0);
 
+    result = reinterpret_cast<uintptr_t>(ptr);
+    return (result);
 }
 
-Data*       Serializer::deserialize(uintptr_t raw)
+t_data  *Serializer::deserialize(uintptr_t raw)
 {
-    
+    t_data *result;
+
+    if (raw == 0)
+        return (NULL);
+
+    result = reinterpret_cast<t_data *>(raw);
+    return (result);
 }

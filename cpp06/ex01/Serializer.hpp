@@ -15,29 +15,21 @@
 
 #include <iostream>
 #include <string>
-
-struct Data {
-    std::string name;
-    std::string weapon;
-    int         hp;
-    int         lvl;
-    int         atk;
-    int         def;
-};
+#include <stdint.h>
+#include "Data.hpp"
 
 class Serializer
 {
-    private:
     public:
         Serializer();
         Serializer(const Serializer& temp);
         Serializer& operator=(const Serializer& temp);
         ~Serializer();
 
-        static uintptr_t    serialize(Data* ptr);
-        static Data*        deserialize(uintptr_t raw);
+        static uintptr_t    serialize(t_data *ptr);
+        static t_data       *deserialize(uintptr_t raw);
 };
 
-std::ostream&   operator<<( std::ostream &out, const Serializer &ref)
+std::ostream&   operator<<( std::ostream &out, const Serializer &ref);
 
 #endif /*SERIALIZER_HPP*/
