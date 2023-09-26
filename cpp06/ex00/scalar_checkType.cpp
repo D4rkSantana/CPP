@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 11:03:08 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/09/23 11:12:56 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/09/26 04:34:06 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool checkPseudo(const std::string &literal)
 
     if (!temp.compare("inf") || !temp.compare("nan"))
     {
-        if (signal != '0')
+        if (signal == '-' )
             temp = signal + temp;
         std::cout << "char:   impossible\nint:    impossible\n";
         std::cout << "float:  " << temp << "f\n";
@@ -53,7 +53,7 @@ static bool checkPseudo(const std::string &literal)
     }
     else if (!temp.compare("inff") || !temp.compare("nanf"))
     {
-        if (signal != '0')
+        if (signal == '-')
             temp = signal + temp;
         std::cout << "char:   impossible\nint:    impossible\n";
         std::cout << "float:  " << temp << std::endl;

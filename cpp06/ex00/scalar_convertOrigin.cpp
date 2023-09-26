@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 11:05:12 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/09/23 11:12:55 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/09/26 04:31:44 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static bool    convertOriginFloat(const std::string &literal)
         std::cout << "char:   Non displayable" << std::endl;
 
     //converte de float para int
-    if (outFloat <= INT_MAX && outFloat >= INT_MIN)
+    if (outFloat <= static_cast<float>(INT_MAX) && outFloat >= static_cast<float>(INT_MIN))
     {
         outInt = static_cast<int>(outFloat);
         std::cout << "int:    " << outInt << std::endl;
@@ -140,7 +140,6 @@ static bool    convertOriginDouble(const std::string &literal)
 
     //converte de string para o tipo de origem
     outDouble = static_cast<double>(std::strtod(temp.c_str(), NULL));
-    std::cout << outDouble << std::endl;
     
     //converte de double para char
     if (outDouble >= 32.0 && outDouble <= 126.0)
