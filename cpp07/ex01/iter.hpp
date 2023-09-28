@@ -16,16 +16,22 @@
 #include <iostream>
 #include <string>
 
-template<typename T>
-void iter(T *array, size_t size, void (* func)(T))
+template<typename T, typename F>
+void iter(T *array, size_t size, F function)
 {
-    size_t  index= 0;
+    size_t  index = 0;
 
     while (index < size)
     {
-        func(array[index]);
+        function(array[index]);
         index++;
     }
+}
+
+template<typename T>
+void printGeneric(T generic)
+{
+    std::cout << generic << std::endl;
 }
 
 #endif /*ITER_HPP*/

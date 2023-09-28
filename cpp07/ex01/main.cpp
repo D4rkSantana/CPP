@@ -6,33 +6,35 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/09/26 22:15:08 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:15:57 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
-void func1(std::string str)
-{
-    str.erase(1, 1);
-    std::cout << str << std::endl;
-    
-}
+
+
 
 int main()
 {
-    std::string  array[5];
+    size_t size = 5;
 
-    array[0] = "aaaa";
-    array[1] = "bbbb";
-    array[2] = "cccc";
-    array[3] = "dddd";
-    array[4] = "eeee";
-    std::cout << "antes:\n" << *array << std::endl;
+    int inteiros[size] = {0, 1, 2, 3, 4};
+    float flutuantes[size] = {0.5, 1.5, 2.5, 3.5, 4.5};
+    char letras[size] = {'4', '2', '-', 'S', 'P'};
+    std::string palavras[size] = {"aaa", "bbb", "ccc", "ddd", "eee"};
 
-    iter(array, 5, func1);
+    std::cout << "\n===== Teste com Int ======\n";
+    iter(inteiros, size, printGeneric<int>);
 
-    std::cout << "depois:\n" << *array << std::endl;
+    std::cout << "\n===== Teste com Float ======\n";
+    iter(flutuantes, size, printGeneric<float>);
+
+    std::cout << "\n===== Teste com Char ======\n";
+    iter(letras, size, printGeneric<char>);
+    
+    std::cout << "\n===== Teste com String ======\n";
+    iter(palavras, size, printGeneric<std::string>);
 
     return(0);
 }
