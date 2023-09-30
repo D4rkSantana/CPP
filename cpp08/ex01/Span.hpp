@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 class Span
 {
@@ -26,13 +28,13 @@ class Span
         Span(unsigned int size);
         Span(const Span& temp);
         Span& operator=(const Span& temp);
-		int &operator[](unsigned int index) const;
+		int &operator[](unsigned int index);
 
         ~Span();
 
 		unsigned int	getSize(void) const;
 		unsigned int	getUsed(void) const;
-		unsigned int	getElement(unsigned int index) const;
+		int				getElement(unsigned int index) const;
 	
 		void			addNumber(int number);
 		unsigned int	shortSpan(void) const;
@@ -60,6 +62,6 @@ class Span
 		};
 };
 
-std::ostream&   operator<<( std::ostream &out, const Span &ref)
+std::ostream&   operator<<( std::ostream &out, const Span &ref);
 
 #endif /*SPAN_HPP*/

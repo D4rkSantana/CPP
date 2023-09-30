@@ -32,20 +32,20 @@ Span &Span::operator=(const Span& temp)
 	this->_size = temp.getSize();
 	this->_used = temp.getUsed();
 	if (!this->_data.empty())
-		this->_data.clean();
+		this->_data.clear();
 	while (index < this->_used)
 	{
-		this->_data.push_back(temp[index]);
+		this->_data.push_back(temp.getElement(index));
 		index++;
 	}
     std::cout << "Span has been assigned" << std::endl;
     return (*this);
 }
 
-int &Span::operator[](unsigned int index) const
+int &Span::operator[](unsigned int index)
 {
-	if (index >= this->_size)
-        throw Span::IndexOutOfLimitException();
+	if (index >= this->_used)
+		throw Span::IndexOutOfLimitException();
     else
 		return (this->_data[index]);
 }
@@ -66,33 +66,38 @@ unsigned int	Span::getSize(void) const
 	return (this->_size);
 }
 
-unsigned int	Span::getSize(void) const
+unsigned int	Span::getUsed(void) const
 {
 	return (this->_used);
 }
 
-unsigned int	getElement(unsigned int index) const
+int	Span::getElement(unsigned int index) const
 {
+	int result;
+	std::vector<int> temp = this->_data;
+
 	if (index >= this->_size)
-		
+		throw Span::IndexOutOfLimitException();
+	result = temp[index];
+	return (result);
 }
 
 void			Span::addNumber(int number)
 {
 	if (this->_used >= this->_size)
-		throw std::LimitReachedtException();
-	this->_data.pop_back(number);
+		throw Span::LimitReachedtException();
+	this->_data.push_back(number);
 	this->_used = this->_used + 1;
 }
 
 unsigned int	Span::shortSpan(void) const
 {
-	int min1;
-	int min2;
+	int min1 = 0;
+	int min2 = 0;
 	std::vector<int>::iterator it;
 
 	if (this->_used < 2)
-		throw std::InsufficientElementsException();
+		throw Span::InsufficientElementsException();
 
 	std::vector<int> temp = this->_data;
 
@@ -103,10 +108,10 @@ unsigned int	Span::shortSpan(void) const
 	it = std::min_element(temp.begin(), temp.end());
 	min2 = *it;
 	
-	return (min2 - min1)
+	return (min2 - min1);
 }
 
 unsigned int	Span::LongSpan(void) const
 {
-
+	return (0);
 }
