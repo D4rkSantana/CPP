@@ -16,13 +16,13 @@ Span::Span(unsigned int size)
 {
 	this->_size = size;
 	this->_used = 0;
-    std::cout << "Span was created" << std::endl;
+    //std::cout << "Span was created" << std::endl;
 }
 
 Span::Span(const Span& temp)
 {
     *this = temp;
-    std::cout << "Span was copied" << std::endl;
+    //std::cout << "Span was copied" << std::endl;
 }
 
 Span &Span::operator=(const Span& temp)
@@ -38,7 +38,7 @@ Span &Span::operator=(const Span& temp)
 		this->_data.push_back(temp.getElement(index));
 		index++;
 	}
-    std::cout << "Span has been assigned" << std::endl;
+    //std::cout << "Span has been assigned" << std::endl;
     return (*this);
 }
 
@@ -52,7 +52,7 @@ int &Span::operator[](unsigned int index)
 
 Span::~Span()
 {
-    std::cout << "Span was destroyed" << std::endl;
+    //std::cout << "Span was destroyed" << std::endl;
 }
 
 std::ostream&   operator<<( std::ostream &out, const Span &ref)
@@ -90,10 +90,26 @@ void			Span::addNumber(int number)
 	this->_used = this->_used + 1;
 }
 
-unsigned int	Span::shortSpan(void) const
+unsigned int	Span::shortestSpan(void) const
 {
-	int min1 = 0;
-	int min2 = 0;
+	std::vector<int>::iterator it;
+
+	std::vector<int> temp = this->_data;
+	std::vector<int> output(temp.size());
+	
+	if (this->_used < 2)
+		throw Span::InsufficientElementsException();
+	std::sort(temp.begin(), temp.end());
+	std::
+	adjacent_difference(temp.begin(), temp.end(), output.begin());
+	it = std::min_element(output.begin(), output.end());
+	return (*it);
+}
+
+unsigned int	Span::longestSpan(void) const
+{
+	int min = 0;
+	int max = 0;
 	std::vector<int>::iterator it;
 
 	if (this->_used < 2)
@@ -102,16 +118,9 @@ unsigned int	Span::shortSpan(void) const
 	std::vector<int> temp = this->_data;
 
 	it = std::min_element(temp.begin(), temp.end());
-	min1 = *it;
-	temp.erase(it);
-
-	it = std::min_element(temp.begin(), temp.end());
-	min2 = *it;
+	min = *it;
+	it = std::max_element(temp.begin(), temp.end());
+	max = *it;
 	
-	return (min2 - min1);
-}
-
-unsigned int	Span::LongSpan(void) const
-{
-	return (0);
+	return (max - min);
 }

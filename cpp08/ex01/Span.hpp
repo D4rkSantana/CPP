@@ -15,8 +15,9 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <algorithm>
+#include <vector> //para o std::vector
+#include <numeric> // para o std::adjacent_difference()
+#include <algorithm> // para std::sort(), std::min_element() e std::max_element()
 
 class Span
 {
@@ -37,8 +38,12 @@ class Span
 		int				getElement(unsigned int index) const;
 	
 		void			addNumber(int number);
-		unsigned int	shortSpan(void) const;
-		unsigned int	LongSpan(void) const;
+		unsigned int	shortestSpan(void) const;
+		unsigned int	longestSpan(void) const;
+
+		void			completAll(int number); // completa todo o vector com o numero
+		void			insertIncrement(int number); // insere o numero na posição 0 e incrementa +1 a cada posição
+		void			
 
 		class IndexOutOfLimitException : public std::exception
 		{
