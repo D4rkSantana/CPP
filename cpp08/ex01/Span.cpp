@@ -90,6 +90,11 @@ void			Span::addNumber(int number)
 	this->_used = this->_used + 1;
 }
 
+void printVector(int nb)
+{
+	std::cout << nb << "\n";
+}
+
 unsigned int	Span::shortestSpan(void) const
 {
 	std::vector<int>::iterator it;
@@ -100,8 +105,8 @@ unsigned int	Span::shortestSpan(void) const
 	if (this->_used < 2)
 		throw Span::InsufficientElementsException();
 	std::sort(temp.begin(), temp.end());
-	std::
-	adjacent_difference(temp.begin(), temp.end(), output.begin());
+	std::adjacent_difference(temp.begin(), temp.end(), output.begin());
+	output.erase(output.begin());
 	it = std::min_element(output.begin(), output.end());
 	return (*it);
 }

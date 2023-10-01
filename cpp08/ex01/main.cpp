@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/01 03:03:26 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/01 19:31:50 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void teste_basico(void)
 
 	Span sp = Span(10);
 	
-	if (!sp.insertAll(0))
+	if (!sp.insertAll(10))
 		return ;
-	if (!sp.insertIncrementAll(0))
+	if (!sp.insertIncrementAll(20))
 		return ;
-	if (!sp.insertInRange(9700, 9900, 42))
+	if (!sp.insertInRange(2, 7, 42))
 		return ;
 	
 	while (index < sp.getSize())
@@ -71,8 +71,8 @@ void teste_basico(void)
 
 int main()
 {
-	//teste_basico();
-	teste_from_hell();
+	teste_basico();
+	//teste_from_hell();
 
 	//teste_subject();
 	
