@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <climits> //limits for int;
 #include <vector> //para o std::vector
 #include <numeric> // para o std::adjacent_difference()
 #include <algorithm> // para std::sort(), std::min_element() e std::max_element()
@@ -41,9 +42,12 @@ class Span
 		unsigned int	shortestSpan(void) const;
 		unsigned int	longestSpan(void) const;
 
-		void			completAll(int number); // completa todo o vector com o numero
-		void			insertIncrement(int number); // insere o numero na posição 0 e incrementa +1 a cada posição
-		void			
+		// completa todo o vector com um numero
+		bool			insertAll(int number);
+		// insere um numero na posição 0 e incrementa +1 a cada posição
+		bool			insertIncrementAll(int number);
+		// insere um numero nas posisoes de um range especifico
+		bool			insertInRange(unsigned int begin, unsigned int end, int number);
 
 		class IndexOutOfLimitException : public std::exception
 		{

@@ -124,3 +124,74 @@ unsigned int	Span::longestSpan(void) const
 	
 	return (max - min);
 }
+
+bool	Span::insertAll(int number)
+{
+	unsigned int	index = 0;
+
+	if (this->_size == 0)
+		return (false);
+	while (index < this->_used)
+	{
+		this->_data[index] = number;
+		index++;
+	}
+	while (index < this->_size)
+	{
+		this->_data.push_back(number);
+		this->_used++;
+		index++;
+	}
+	return (true);
+}
+
+bool	Span::insertIncrementAll(int number)
+{
+	unsigned int	index = 0;
+
+	if (this->_size == 0)
+		return (false);
+	if ((number + static_cast<int>(this->_size)) > INT_MAX)
+		return (false);
+
+	while (index < this->_used)
+	{
+		this->_data[index] = number + static_cast<int>(index);
+		index++;
+	}
+	while (index < this->_size)
+	{
+		this->_data.push_back(number + static_cast<int>(index));
+		this->_used++;
+		index++;
+	}
+	return (true);
+}
+
+bool	Span::insertInRange(unsigned int begin, unsigned int end, int number)
+{
+	unsigned int	index;
+
+	if (this->_size == 0)
+		return (false);
+	if (begin >= this->_size || end >= this->_size ||begin >= end )
+		return (false);
+
+	if (end >= this->_used)
+	{
+		index = this->_used -1;
+		while (index <= end)
+		{
+			this->_data.push_back(int());
+			index++;
+			this->_used++;
+		}
+	}
+	index = begin;
+	while (index <= end)
+	{
+		this->_data[index] = number;
+		index++;
+	}
+	return (true);
+}
