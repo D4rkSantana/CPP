@@ -14,33 +14,44 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <iostream>
-#include <fstream>
+#include <fstream> //abrir e ler arquivo
+#include <sstream> //separar numeros da data
 #include <string>
+#include <cstdlib>
+#include <map> //conteiner map
 
 typedef struct date_s
 {
-	int year;
-	int mouth;
-	int day;
+	int		year;
+	int		month;
+	int		day;
 
 } date_t;
 
 class BitcoinExchange
 {
-    private:
-		std::map<std::string, float> _data;
-		std::map<std::string, float> _input;
-		bool	_loadData(std::string data);
-		bool	_openFile(std::string name);
-		bool	_saveLine(std::string line);
-    public:
-        BitcoinExchange();
-		BitcoinExchange(std::string data_name);
-        BitcoinExchange(const BitcoinExchange& temp);
-        BitcoinExchange& operator=(const BitcoinExchange& temp);
-        ~BitcoinExchange();
+	public:
+		BitcoinExchange(void);
+		BitcoinExchange(std::string inputFile);
+		~BitcoinExchange(void);
+		BitcoinExchange(BitcoinExchange const& copy);
+
+		BitcoinExchange& operator=(BitcoinExchange const & src);
+		
+		void	goWork(void);
+
+	private:
+		std::string	_inputFile;
+		std::string	_dataFile;
+		std::map<std::string, float>	_dataBase;
+
+		void	_initDataFile();
+		void	_initInputFile();
+		void	_calcBitcoin(std::string date, float value);
+		float	_calcValue(std::string date, float value);
 };
 
-std::ostream&   operator<<( std::ostream &out, const BitcoinExchange &ref);
-
+bool	checkDate(std::string rawDate);
+bool	checkFile(std::string file);
+int		dateToInt(std::string date);
 #endif /*BITCOINEXCHANGE_HPP*/
