@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Template.hpp                                       :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/08/29 00:25:58 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 00:38:16 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef PmergeMe_HPP
+#define PmergeMe_HPP
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <vector>
 
-class Template
+class PmergeMe
 {
     private:
+		std::vector<int>	_vector;
+		bool				_isOrdered;
+		
+
     public:
-        Template();
-        Template(const Template& temp);
-        Template& operator=(const Template& temp);
-        ~Template();
+        PmergeMe();
+        PmergeMe(const PmergeMe& temp);
+        PmergeMe& operator=(const PmergeMe& temp);
+        ~PmergeMe();
+
+		void	addNumber(std::string number);
+		void	goSort(void);
+		void	printNumbers(void);
 };
 
-std::ostream&   operator<<( std::ostream &out, const Template &ref)
+std::ostream&   operator<<( std::ostream &out, const PmergeMe &ref);
 
-#endif /*TEMPLATE_HPP*/
+#endif /*PmergeMe_HPP*/

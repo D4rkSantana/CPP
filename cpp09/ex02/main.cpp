@@ -6,23 +6,19 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/02 17:38:18 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 00:36:25 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "PmergeMe.hpp"
 
 int	main(int argc, char *argv[])
 {
-	if (argc != 2){
-		std::cout << "Wrong number of arguments" << std::endl;
-		return (1);
+	if (argc < 2)
+	{
+		std::cerr << "Error: minimum 2 arguments" << std::endl;
+		return (0);
 	}
-	try {
-		BitcoinExchange	btc(argv[1]);
-	}
-	catch (std::exception const &e){
-		std::cout << "Error: " << e.what() << std::endl;
-	}
+	(void)argv;
 	return (0);
 }
