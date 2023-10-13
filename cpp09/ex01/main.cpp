@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/02 17:53:16 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:41:22 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int	main(int argc, char *argv[])
 {
+	int result;
+
 	if (argc != 2){
 		std::cout << "Wrong number of arguments" << std::endl;
 		return (1);
 	}
+	
+	RPN rpn();
 	try {
-		RPN rpn(argv[1]);
-		rpn.rpn();
+		result = rpn.calcule(argv[1]);
+		std::cout << "Result: " << result << std::endl;
 	}
 	catch (std::exception const &e) {
 		std::cout << e.what() << std::endl;
