@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/13 18:41:22 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/13 22:48:37 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	
-	RPN rpn();
+	RPN rpn;
 	try {
 		result = rpn.calcule(argv[1]);
 		std::cout << "Result: " << result << std::endl;

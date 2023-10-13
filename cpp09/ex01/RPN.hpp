@@ -27,15 +27,13 @@ class RPN
 
 		RPN& operator=(RPN const & src);
 
-		void	rpn();
+		int		calcule(std::string input);
 	private:
 		std::string		_input;
 		std::stack<int> _stack;
-		void	_validateInput();
-		void	_calculateRPN(char c);
-		void	_getResult();
+		void	checkInput(std::string input);
+		int		getResult(std::string input);
 };
 
-bool	isTokens(char c);
 
 #endif /*RPN_HPP*/

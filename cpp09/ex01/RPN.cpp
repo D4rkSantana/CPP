@@ -17,11 +17,6 @@ RPN::RPN(void)
 	return ;
 }
 
-RPN::RPN()
-{
-	return ;
-}
-
 RPN::~RPN(void)
 {
 	return ;
@@ -41,7 +36,8 @@ RPN& RPN::operator=(RPN const & src)
 	return (*this);
 }
 
-int		RPN::calcule(std::string input){
+int	RPN::calcule(std::string input)
+{
 	int result;
 	
 	checkInput(input);
@@ -54,21 +50,32 @@ int		RPN::calcule(std::string input){
 
 // Função faz a verificação dos inputs e grava na stack
 
-void	RPN::_validateInput(std::string input){
+void	RPN::checkInput(std::string input){
 
 	size_t	index;
 	size_t	size = input.size();
+	char	c;
+	int 	qt_digits = 0;
+	int 	qt_tokens = 0;
 
 	for (index = 0; index < size; index++)
 	{
-		if (checkElement(input[index]))
-			throw std::runtime_error("Error: invalid expression.");
+		c = input[index];
+		if (c >= '0' && c <= '9')
+			qt_digits++;
+		else if (c == '-' || c == '+' || c == '*' || c == '/')
+			qt_tokens++;
+		else if (c == ' ')
+			continue ;
+		else
+			throw std::runtime_error("Error: invalid input.");
 	}
+	if (qt_digits != qt_tokens + 1)
+		throw std::runtime_error("Error: invalid input.");
 }
 
-void	RPN::_calculateRPN(char c){
-}
-
-void	RPN::_getResult(){
-
+int	RPN::getResult(std::string input)
+{
+	std::cout << input << " result\n";
+	return (0);
 }
