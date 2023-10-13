@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/13 22:48:37 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/13 23:59:19 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 		std::cout << "Result: " << result << std::endl;
 	}
 	catch (std::exception const &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	return (0);
 }
