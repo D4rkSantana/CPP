@@ -43,12 +43,12 @@ class BitcoinExchange
 	private:
 		std::string	_inputFile;
 		std::string	_dataFile;
-		std::map<std::string, float>	_dataBase;
+		std::map<std::string, double>	_dataBase;
 
 		void	_initDataFile();
 		void	_initInputFile();
-		void	_calcBitcoin(std::string date, float value);
-		float	_calcValue(std::string date, float value);
+		void	_calcBitcoin(std::string date, double value);
+		double	_calcValue(std::string date, double value);
 };
 
 bool	checkDate(std::string rawDate);

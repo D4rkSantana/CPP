@@ -81,7 +81,7 @@ void	BitcoinExchange::_initDataFile(){
 	std::ifstream	ifs;
 	std::string		date, value, line;
 	size_t pos;
-	float rate;
+	double rate;
 
 	checkOpen(this->_dataFile.c_str(), 'd');
 	ifs.open(this->_dataFile.c_str());
@@ -91,7 +91,7 @@ void	BitcoinExchange::_initDataFile(){
 		
 		date = line.substr(0, pos); // recorta a string com a data
 		value = line.substr(pos + 1); // recorta a string com valor
-		rate = atof(value.c_str()); //converte a string valor para float
+		rate = atof(value.c_str()); //converte a string valor para double
 		_dataBase[date] = rate; // insere a nova cotação no mapa
     }
 	ifs.close();
@@ -116,7 +116,7 @@ void	BitcoinExchange::_initInputFile(){
 			size_t pos = line.find('|'); // acha o delimitador
 			date = line.substr(0, pos); //recorta a string data
 			value = line.substr(pos + 1); //recorta string quantidade
-			float rate = atof(value.c_str()); // converte quant em float
+			double rate = atof(value.c_str()); // converte quant em double
 			_calcBitcoin(date, rate); // calcula o valor do bitcoin
 		}
 	}
@@ -124,7 +124,7 @@ void	BitcoinExchange::_initInputFile(){
 
 //faz a checagem e imprime a linha com o resultado do valor dos bitcoins
 
-void	BitcoinExchange::_calcBitcoin(std::string date, float value){
+void	BitcoinExchange::_calcBitcoin(std::string date, double value){
 	if (!checkDate(date)){
 		std::cout << "Error: Invalid date." << std::endl;
 		return ;
@@ -134,19 +134,19 @@ void	BitcoinExchange::_calcBitcoin(std::string date, float value){
 	else if (value > 1000)
 		std::cout << "Error: too large a number." << std::endl;
 	else {
-		float result = _calcValue(date, value);
+		double result = _calcValue(date, value);
 		std::cout << date << "=> " << value << " = " << result << std::endl;
 	}
 }
 
 // faz o calculo do valor cruzando os dados do Banco e da linha do input
 
-float	BitcoinExchange::_calcValue(std::string date, float value)
+double	BitcoinExchange::_calcValue(std::string date, double value)
 {
 	int date_input = 0;
 	int	date_it = 0;
 	int date_next = 0;
-	std::map<std::string, float>::iterator	it; // cria um iterador do map
+	std::map<std::string, double>::iterator	it; // cria um iterador do map
 
 	it = _dataBase.find(date); // procura no banco se existe uma data identica
 	
@@ -157,7 +157,7 @@ float	BitcoinExchange::_calcValue(std::string date, float value)
 	for (it = _dataBase.begin(); it != _dataBase.end(); it++) //itera o mapa em busca da data mais proxima
 	{
 		//	cria um iterador para um elemento a frente
-		std::map<std::string, float>::iterator	next = it;
+		std::map<std::string, double>::iterator	next = it;
 		next++;
 	
 		//converte a data em string para int a fim de viabilizar a comparação
