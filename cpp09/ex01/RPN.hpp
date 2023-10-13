@@ -28,12 +28,15 @@ class RPN
 		RPN& operator=(RPN const & src);
 
 		int		calcule(std::string input);
+	
 	private:
-		std::string		_input;
-		std::stack<int> _stack;
 		void	checkInput(std::string input);
 		int		getResult(std::string input);
 };
+
+bool	isDigit(char c);
+bool	isToken(char c);
+int	simpleCalc(int n1, int n2, char token);
 
 
 #endif /*RPN_HPP*/

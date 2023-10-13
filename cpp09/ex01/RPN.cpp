@@ -29,10 +29,7 @@ RPN::RPN(RPN const& copy)
 
 RPN& RPN::operator=(RPN const & src)
 {
-	if (this != &src){
-		this->_input = src._input;
-		this->_stack = src._stack;
-	}
+	(void)src;
 	return (*this);
 }
 
@@ -46,36 +43,90 @@ int	RPN::calcule(std::string input)
 	return (result);
 }
 
-// throw std::runtime_error("Error: invalid expression.");
+// Função faz a verificação dos inputs
 
-// Função faz a verificação dos inputs e grava na stack
-
-void	RPN::checkInput(std::string input){
+void	RPN::checkInput(std::string input)
+{
 
 	size_t	index;
 	size_t	size = input.size();
-	char	c;
 	int 	qt_digits = 0;
 	int 	qt_tokens = 0;
 
 	for (index = 0; index < size; index++)
 	{
-		c = input[index];
-		if (c >= '0' && c <= '9')
+		if (isDigit(input[index]))
 			qt_digits++;
-		else if (c == '-' || c == '+' || c == '*' || c == '/')
+		else if (isToken(input[index]))
 			qt_tokens++;
-		else if (c == ' ')
+		else if (input[index] == ' ')
 			continue ;
 		else
-			throw std::runtime_error("Error: invalid input.");
+			throw std::runtime_error("Error: Invalid character in input.");
 	}
 	if (qt_digits != qt_tokens + 1)
-		throw std::runtime_error("Error: invalid input.");
+		throw std::runtime_error("Error: the total number of numbers must be the number of tokens + 1.");
 }
 
 int	RPN::getResult(std::string input)
 {
-	std::cout << input << " result\n";
+	size_t	index;
+	size_t	size = input.size();
+	int		temp1, temp2;
+
+
+	std::stack<int> stack;
+	for (index = 0; index < size; index++)
+	{
+		if (isDigit(input[index]))
+			stack.push(static_cast<int>(input[index] - '0'));
+		else if (isToken(input[index]))
+		{
+			if (stack.size() < 2)
+				throw std::runtime_error("Error: It is necessary to have at least 2 numbers for a token to be applied.");
+			temp2 = stack.top();
+			stack.pop();
+			temp1 = stack.top();
+			stack.pop();
+			stack.push(simpleCalc(temp1, temp2, input[index]));
+		}
+		else if (input[index] == ' ')
+			continue ;
+		else
+			throw std::runtime_error("Error: Invalid character in input.");
+	}
+	if (stack.size() == 1)
+		return (stack.top());
+	else
+		throw std::runtime_error("Error: calculation broke.");
+	return (0);
+}
+
+bool	isDigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+bool	isToken(char c)
+{
+	return (c == '-' || c == '+' || c == '*' || c == '/');
+}
+
+int	simpleCalc(int n1, int n2, char token)
+{
+	if (token == '+')
+		return (n1 + n2);
+	else if (token == '-')
+		return (n1 - n2);
+	else if (token == '*')
+		return (n1 * n2);
+	else if (token == '/')
+	{
+		if (n2 == 0)
+			throw std::runtime_error("Error: Division by 0 is not accepted.");
+		return (n1 / n2);
+	}
+	else
+		throw std::runtime_error("Error: Invalid Token.");
 	return (0);
 }
