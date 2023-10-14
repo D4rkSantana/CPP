@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 22:40:46 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 00:30:50 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,56 +69,87 @@ void	PmergeMe::goSort(void)
 
 	//Passo 1
 	//Verifica se o vetor é impar, caso seja, retirar e salva o ultimo numero
-	int burr;
-	int is_odd = raw.size() % 2;
-	
-	if (is_odd)
-	{
-		burr = raw.back();
-		raw.pop_back();
-	}
-	this->_vector.clear();
-	this->_vector = raw;
+	parse_odd();
+
+	std::cout << "===== Raw vector pos odd =====\n";
+	printVector(this->_vector);
+	std::cout << std::endl;
+
 	//Passo 2
 	//separa o vetor principal em pares e guarda dentro de um array
+	//onde o primeiro elemento do par é o menor numero;
+
+	std::deque<std::vector<int> > pairs;
+
+	pairs = splitPairs(this->_vector);
+
+	std::cout << " == criação dos pares == \n";
+	printPairs(pairs);
+	std::cout << std::endl;
+
+	//passo 3
+	//cria 2 listas e ordena se baseando do no maior elemento do par para ordenar os pares
+	
+	pairs = externSortPairs(pairs);
+	
+	std::cout << "depois da segunda ordenação\n";
+	printPairs(pairs);
+	std::cout << std::endl;
+
+	//passo 4
+	std::deque<int> result;
+	result = sorted(pairs);
+
+	std::cout << "depois da segunda ordenação\n";
+	printDeque(result);
+	std::cout << std::endl;
+}
+
+void PmergeMe::parse_odd(void)
+{
+	std::cout << "===== Raw vector pre odd =====\n";
+	printVector(this->_vector);
+	std::cout << std::endl;
+
+	int is_odd = this->_vector.size() % 2;
+	
+	if (!is_odd)
+		return ;
+	this->_burr = this->_vector.back();
+	this->_odd = true;
+	this->_vector.pop_back();
+}
+
+std::deque<std::vector<int> > splitPairs(std::vector<int> raw)
+{
 	std::vector<int> temp;
 	std::deque<std::vector<int> > pairs;
-	
-	//std::cout << "raw size: " << raw.size() << std::endl;
+
 	for (size_t i = 0; i < raw.size(); i += 2)
 	{
-		temp.push_back(raw[i]);
-		temp.push_back(raw[i+1]);
+		if (raw[i] > raw[i+1])
+		{
+			temp.push_back(raw[i]);
+			temp.push_back(raw[i+1]);
+		}	
+		else
+		{
+			temp.push_back(raw[i+1]);
+			temp.push_back(raw[i]);
+		}
 		pairs.push_back(temp);
 		temp.clear();
 	}
-	//std::cout << "pairs size: " << pairs.size() << std::endl;
-	std::cout << "antes da primeira ordenação\n";
-	for (size_t i = 0; i < pairs.size(); i++)
-		std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
-	
-	//passo 3
-	//ordenar internamente os os pares, colocando o maior numero na esquerda
-	int temp_int;
-	for (size_t i = 0; i < pairs.size(); i++)
-	{
-		if (pairs[i][0] > pairs[i][1])
-		{
-			temp_int = pairs[i][1];
-			pairs[i][1] = pairs[i][0];
-			pairs[i][0] = temp_int;
-		}
-			
-	}
-	std::cout << "depois da primeira ordenação\n";
-	for (size_t i = 0; i < pairs.size(); i++)
-		std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
-	
-	//passo 4
-	//cria 2 listas e ordena se baseando do no maior elemento do par para ordenar os pares
+	return (pairs);
+}
+
+std::deque<std::vector<int> > externSortPairs(std::deque<std::vector<int> > raw)
+{
 	std::deque<std::vector<int> > ord;
+	std::deque<std::vector<int> > pairs = raw;
 	std::deque<std::vector<int> >::iterator it;
 	std::vector<int> element;
+
 	ord.push_back(*pairs.begin());
 	pairs.pop_front();
 	
@@ -128,7 +159,7 @@ void	PmergeMe::goSort(void)
 		element = *pairs.begin();
 		while (it != ord.end())
 		{
-			if (element[1] < it[0][1])
+			if (element[0] < it[0][0])
 			{
 				ord.insert(it, element);
 				break ;
@@ -142,20 +173,52 @@ void	PmergeMe::goSort(void)
 		}
 		pairs.pop_front();
 	}
-	
-	std::cout << "depois da segunda ordenação\n";
-	for (size_t i = 0; i < ord.size(); i++)
-		std::cout << "pair " << i << ": " << ord[i][0] << " " << ord[i][1] << std::endl;
-
+	return (ord);
 }
 
-void	PmergeMe::printNumbers(void)
+std::deque<int> PmergeMe::sorted(std::deque<std::vector<int> > raw)
+{
+	std::deque<int> main;
+	std::deque<int> pend;
+
+	for (size_t i = 0; i < raw.size(); i++)
+	{
+		main.push_back(raw[i][0]);
+		pend.push_back(raw[i][1]);
+	}
+	if (this->_odd)
+		pend.push_back(this->_burr);
+
+	main.push_front(*pend.begin());
+	pend.pop_front();
+
+	return (main);
+}
+
+void	printPairs(std::deque<std::vector<int> > vec)
+{
+	for (size_t i = 0; i < vec.size(); i++)
+		std::cout << "pair " << i << ": " << vec[i][0] << " " << vec[i][1] << std::endl;
+}
+
+void	printVector(std::vector<int> vec)
 {
 	std::vector<int>::iterator it;
 
-	it = this->_vector.begin();
-	std::cout << std::endl << "=== vector ===" << std::endl;
-	for (it = this->_vector.begin(); it != this->_vector.end(); ++it)
+	it = vec.begin();
+
+	for (it = vec.begin(); it != vec.end(); ++it)
 		std::cout << *it << " ";
-	std::cout  << std::endl << "==============" << std::endl;
+	std::cout  << std::endl;
+}
+
+void	printDeque(std::deque<int> vec)
+{
+	std::deque<int>::iterator it;
+
+	it = vec.begin();
+
+	for (it = vec.begin(); it != vec.end(); ++it)
+		std::cout << *it << " ";
+	std::cout  << std::endl;
 }

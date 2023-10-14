@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 19:03:09 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 22:45:42 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int	main(int argc, char *argv[])
 	try
 	{
 		for (int i = 1; i < argc; i++)
-			pmerge.addNumber(argv[i]);
-		pmerge.printNumbers();
+		pmerge.addNumber(argv[i]);
 		pmerge.goSort();
-		pmerge.printNumbers();
 	}
 	catch (std::exception const &e)
 	{
