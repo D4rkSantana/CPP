@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 19:06:30 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:06:04 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,26 @@ void	PmergeMe::goSort(void)
 		temp.clear();
 	}
 	//std::cout << "pairs size: " << pairs.size() << std::endl;
-	//for (size_t i = 0; i < pairs.size(); i++)
-	//	std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
+	std::cout << "antes da primeira ordenação\n";
+	for (size_t i = 0; i < pairs.size(); i++)
+		std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
+	
+	//passo 3
+	//ordenar os pares, colocando o maior numero na esquerda
+	int temp_int;
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		if (pairs[i][0] > pairs[i][1])
+		{
+			temp_int = pairs[i][1];
+			pairs[i][1] = pairs[i][0];
+			pairs[i][0] = temp_int;
+		}
+			
+	}
+	std::cout << "depois da primeira ordenação\n";
+	for (size_t i = 0; i < pairs.size(); i++)
+		std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
 }
 
 void	PmergeMe::printNumbers(void)
