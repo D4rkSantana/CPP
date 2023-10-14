@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 00:38:16 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 02:21:08 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class PmergeMe
     private:
 		std::vector<int>	_vector;
 		bool				_isOrdered;
-		
 
     public:
         PmergeMe();
