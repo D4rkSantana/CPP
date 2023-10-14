@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 02:21:08 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 21:53:19 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
+#include <deque>
 
 class PmergeMe
 {

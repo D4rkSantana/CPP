@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 20:06:04 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 22:40:46 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	PmergeMe::goSort(void)
 	//Passo 2
 	//separa o vetor principal em pares e guarda dentro de um array
 	std::vector<int> temp;
-	std::vector<std::vector<int> > pairs;
+	std::deque<std::vector<int> > pairs;
 	
 	//std::cout << "raw size: " << raw.size() << std::endl;
 	for (size_t i = 0; i < raw.size(); i += 2)
@@ -98,7 +98,7 @@ void	PmergeMe::goSort(void)
 		std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
 	
 	//passo 3
-	//ordenar os pares, colocando o maior numero na esquerda
+	//ordenar internamente os os pares, colocando o maior numero na esquerda
 	int temp_int;
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
@@ -113,6 +113,40 @@ void	PmergeMe::goSort(void)
 	std::cout << "depois da primeira ordenação\n";
 	for (size_t i = 0; i < pairs.size(); i++)
 		std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
+	
+	//passo 4
+	//cria 2 listas e ordena se baseando do no maior elemento do par para ordenar os pares
+	std::deque<std::vector<int> > ord;
+	std::deque<std::vector<int> >::iterator it;
+	std::vector<int> element;
+	ord.push_back(*pairs.begin());
+	pairs.pop_front();
+	
+	while (!pairs.empty())
+	{
+		it = ord.begin();
+		element = *pairs.begin();
+		while (it != ord.end())
+		{
+			if (element[1] < it[0][1])
+			{
+				ord.insert(it, element);
+				break ;
+			}
+			++it;
+			if (it == ord.end())
+			{
+				ord.push_back(element);
+				break ;
+			}
+		}
+		pairs.pop_front();
+	}
+	
+	std::cout << "depois da segunda ordenação\n";
+	for (size_t i = 0; i < ord.size(); i++)
+		std::cout << "pair " << i << ": " << ord[i][0] << " " << ord[i][1] << std::endl;
+
 }
 
 void	PmergeMe::printNumbers(void)
