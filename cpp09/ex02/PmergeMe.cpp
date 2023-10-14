@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 02:50:32 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:06:30 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	PmergeMe::addNumber(std::string input)
 
 void	PmergeMe::goSort(void)
 {
-
+	std::vector<int> raw = this->_vector;
 	//verifica se é possivel ordenar
-	if (this->_vector.size() < 2)
+	if (raw.size() < 2)
 	{
 		this->_isOrdered = true;
 		return ;
@@ -70,16 +70,31 @@ void	PmergeMe::goSort(void)
 	//Passo 1
 	//Verifica se o vetor é impar, caso seja, retirar e salva o ultimo numero
 	int burr;
-	int is_odd = this->_vector.size() % 2;
+	int is_odd = raw.size() % 2;
 	
 	if (is_odd)
 	{
-		std::cout << "é impar\n";
-		burr = this->_vector.back();
-		this->_vector.pop_back();
+		burr = raw.back();
+		raw.pop_back();
 	}
-	else
-		std::cout << "é par\n";
+	this->_vector.clear();
+	this->_vector = raw;
+	//Passo 2
+	//separa o vetor principal em pares e guarda dentro de um array
+	std::vector<int> temp;
+	std::vector<std::vector<int> > pairs;
+	
+	//std::cout << "raw size: " << raw.size() << std::endl;
+	for (size_t i = 0; i < raw.size(); i += 2)
+	{
+		temp.push_back(raw[i]);
+		temp.push_back(raw[i+1]);
+		pairs.push_back(temp);
+		temp.clear();
+	}
+	//std::cout << "pairs size: " << pairs.size() << std::endl;
+	//for (size_t i = 0; i < pairs.size(); i++)
+	//	std::cout << "pair " << i << ": " << pairs[i][0] << " " << pairs[i][1] << std::endl;
 }
 
 void	PmergeMe::printNumbers(void)
@@ -87,6 +102,8 @@ void	PmergeMe::printNumbers(void)
 	std::vector<int>::iterator it;
 
 	it = this->_vector.begin();
+	std::cout << std::endl << "=== vector ===" << std::endl;
 	for (it = this->_vector.begin(); it != this->_vector.end(); ++it)
-		std::cout << *it << std::endl;
+		std::cout << *it << " ";
+	std::cout  << std::endl << "==============" << std::endl;
 }
