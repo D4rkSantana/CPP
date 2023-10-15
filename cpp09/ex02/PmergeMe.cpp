@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 00:30:50 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:21:43 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,62 +57,28 @@ void	PmergeMe::addNumber(std::string input)
 	this->_isOrdered = false;
 }
 
-void	PmergeMe::goSort(void)
+std::deque<int>	PmergeMe::goSort(void)
 {
 	std::vector<int> raw = this->_vector;
-	//verifica se é possivel ordenar
-	if (raw.size() < 2)
-	{
-		this->_isOrdered = true;
-		return ;
-	}
-
-	//Passo 1
-	//Verifica se o vetor é impar, caso seja, retirar e salva o ultimo numero
-	parse_odd();
-
-	std::cout << "===== Raw vector pos odd =====\n";
-	printVector(this->_vector);
-	std::cout << std::endl;
-
-	//Passo 2
-	//separa o vetor principal em pares e guarda dentro de um array
-	//onde o primeiro elemento do par é o menor numero;
-
 	std::deque<std::vector<int> > pairs;
 
+	if (raw.size() < 2)
+	{
+		std::deque<int> small(raw.begin(), raw.end());
+		this->_isOrdered = true;
+		return (small);
+	}
+	parse_odd();
+
 	pairs = splitPairs(this->_vector);
-
-	std::cout << " == criação dos pares == \n";
-	printPairs(pairs);
-	std::cout << std::endl;
-
-	//passo 3
-	//cria 2 listas e ordena se baseando do no maior elemento do par para ordenar os pares
-	
 	pairs = externSortPairs(pairs);
-	
-	std::cout << "depois da segunda ordenação\n";
-	printPairs(pairs);
-	std::cout << std::endl;
-
-	//passo 4
-	std::deque<int> result;
-	result = sorted(pairs);
-
-	std::cout << "depois da segunda ordenação\n";
-	printDeque(result);
-	std::cout << std::endl;
+	return(sorted(pairs));
 }
 
 void PmergeMe::parse_odd(void)
 {
-	std::cout << "===== Raw vector pre odd =====\n";
-	printVector(this->_vector);
-	std::cout << std::endl;
-
 	int is_odd = this->_vector.size() % 2;
-	
+
 	if (!is_odd)
 		return ;
 	this->_burr = this->_vector.back();
@@ -180,6 +146,8 @@ std::deque<int> PmergeMe::sorted(std::deque<std::vector<int> > raw)
 {
 	std::deque<int> main;
 	std::deque<int> pend;
+	std::deque<int>::iterator it;
+	std::vector<int> insert_order;
 
 	for (size_t i = 0; i < raw.size(); i++)
 	{
@@ -190,26 +158,80 @@ std::deque<int> PmergeMe::sorted(std::deque<std::vector<int> > raw)
 		pend.push_back(this->_burr);
 
 	main.push_front(*pend.begin());
-	pend.pop_front();
-
+	
+	insert_order = creatInsertOrder(pend.size());
+	for (size_t i = 0; i < insert_order.size(); i++)
+	{
+		int value = pend[insert_order[i]];
+		size_t pos = searchPos(main, value);
+		if (pos == main.size())
+			main.push_back(value);
+		else
+		{
+			it = main.begin();
+			std::advance(it, pos);
+			main.insert(it, value);
+		}
+	}
 	return (main);
 }
 
-void	printPairs(std::deque<std::vector<int> > vec)
+size_t searchPos(std::deque<int> main, int value)
 {
-	for (size_t i = 0; i < vec.size(); i++)
-		std::cout << "pair " << i << ": " << vec[i][0] << " " << vec[i][1] << std::endl;
+	size_t i;
+
+	for (i = 0; i < main.size(); i++)
+	{
+		if (main[i] > value)
+			return (i);
+	}
+	return (main.size());
 }
 
-void	printVector(std::vector<int> vec)
+std::vector<int>	creatInsertOrder(size_t size)
 {
-	std::vector<int>::iterator it;
+	int j_count = 0;
+	int i_count = 0;
+	std::deque<int> index;
+	std::vector<int> result;
+	std::deque<int> jacobs = createJacobsthalSequence(size);
 
-	it = vec.begin();
+	for (size_t i = 0; i < size + 1; i++)
+		index.push_back(i);
+	jacobs.pop_front();
+	jacobs.pop_front();
+	index.pop_front();
 
-	for (it = vec.begin(); it != vec.end(); ++it)
-		std::cout << *it << " ";
-	std::cout  << std::endl;
+	result.push_back(jacobs[0]);
+	while (result.size() != size - 1)
+	{
+		if (jacobs[j_count] <= index[i_count])
+		{
+			j_count++;
+			if (jacobs[j_count] < (int)size)
+				result.push_back(jacobs[j_count]);
+		}
+		else
+			result.push_back(index[i_count]);
+		i_count++;
+	}
+	return (result);
+}
+
+int jacobsthal(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+}
+
+std::deque<int> createJacobsthalSequence(size_t n)
+{
+    std::deque<int> result;
+
+    for (size_t i = 0; i <= n; ++i) {
+        result.push_back(jacobsthal(i));
+    }
+    return result;
 }
 
 void	printDeque(std::deque<int> vec)
