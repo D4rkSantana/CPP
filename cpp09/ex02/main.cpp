@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 14:12:38 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:03:29 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ int	main(int argc, char *argv[])
 	std::cout << "before: ";
 	pmerge.printRawV();
 
-	std::cout << std::endl << "after V: ";
+	std::cout << "after : ";
 	printVector(resultV);
-	std::cout << std::endl << "after D: ";
-	printDeque(resultD);
 
-	std::cout  << std::endl << "Time to process a range of " << pmerge.getSizeV() << " elements with std::vector : " << timeV << " us\n";
-	std::cout << "Time to process a range of " << pmerge.getSizeD() << " elements with std::deque : " << timeD << " us\n";
+	std::cout << "Time to process a range of " << pmerge.getSizeV() << " elements with std::vector : " << timeV << " us\n";
+	std::cout << "Time to process a range of " << pmerge.getSizeD() << " elements with std::deque  : " << timeD << " us\n";
 
 
 

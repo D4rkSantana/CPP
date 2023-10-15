@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 14:15:47 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:00:58 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,31 +382,28 @@ std::deque<std::deque<int> > externSortPairsD(std::deque<std::deque<int> > raw)
 	return (ord);
 }
 
-
 //creatInsertOrders
 
 std::vector<int>	creatInsertOrderV(size_t size)
 {
-	size_t size_now = size;
-	int j_count = 0;
-	int i_count = 2;
+	int j_count = 2;
+	int i_count = 0;
 	int jacobs = jacobsthal(j_count);
 	std::vector<int> index;
 	std::vector<int> result;
 
-	for (size_t i = 0; i < size_now + 1; i++)
+	for (size_t i = 0; i < size + 1; i++)
 		index.push_back(i);
 	index.erase(index.begin());
-	size_now--;
 
 	result.push_back(jacobs);
-	while (result.size() != size_now- 1)
+	while (result.size() != size - 1)
 	{
 		if (jacobs <= index[i_count])
 		{
 			j_count++;
 			jacobs = jacobsthal(j_count);
-			if (jacobs < (int)size_now)
+			if (jacobs < (int)size)
 				result.push_back(jacobs);
 		}
 		else
