@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 03:57:54 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:45:17 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 PmergeMe::PmergeMe()
 {
-	this->_isOrdered = false;
     return ;
 }
 
@@ -42,11 +41,9 @@ std::ostream&   operator<<( std::ostream &out, const PmergeMe &ref)
     return (out);
 }
 
-
 // Add Numbers 
 
-
-void	PmergeMe::addNumberV(std::string input)
+void	PmergeMe::addNumber(std::string input)
 {
 	for (size_t index = 0; index < input.size(); index++)
 	{
@@ -58,23 +55,10 @@ void	PmergeMe::addNumberV(std::string input)
 			throw std::runtime_error("Error: Invalid character in input.");
 	}
 	this->_vector.push_back(std::atoi(input.c_str()));
-}
-
-void	PmergeMe::addNumberD(std::string input)
-{
-	for (size_t index = 0; index < input.size(); index++)
-	{
-		if (input[index] >= '0' && input[index] <= '9')
-			continue ; 		
-		else if ((input[index] == '+' || input[index] == ' ') && index == 0)
-			continue ;
-		else
-			throw std::runtime_error("Error: Invalid character in input.");
-	}
 	this->_deque.push_back(std::atoi(input.c_str()));
 }
 
-//go sorts 
+//go sorts
 
 std::vector<int>	PmergeMe::goSortV(void)
 {
@@ -83,14 +67,55 @@ std::vector<int>	PmergeMe::goSortV(void)
 
 	if (raw.size() < 2)
 		return (raw);
-	parse_odd_v();
+	if (raw.size() == 2)
+	{
+		std::vector<int> small;
+		if (raw[0] < raw[1])
+		{
+			small.push_back(raw[0]);
+			small.push_back(raw[1]);
+			return (small);
+		}
+		small.push_back(raw[1]);
+		small.push_back(raw[0]);
+		return (small);
+	}
+	parseOddV();
 
 	pairs = splitPairsV(this->_vector);
 	pairs = externSortPairsV(pairs);
 	return(sortedV(pairs));
 }
 
-void PmergeMe::parse_odd_v(void)
+std::deque<int>	PmergeMe::goSortD(void)
+{
+	std::deque<int> raw = this->_deque;
+	std::deque<std::deque<int> > pairs;
+
+	if (raw.size() < 2)
+		return (raw);
+	if (raw.size() == 2)
+	{
+		std::deque<int> small;
+		if (raw[0] < raw[1])
+		{
+			small.push_back(raw[0]);
+			small.push_back(raw[1]);
+			return (small);
+		}
+		small.push_back(raw[1]);
+		small.push_back(raw[0]);
+		return (small);
+	}
+	parseOddD();
+	pairs = splitPairsD(this->_deque);
+	pairs = externSortPairsD(pairs);
+	return(sortedD(pairs));
+}
+
+//parde odd
+
+void PmergeMe::parseOddV(void)
 {
 	int is_odd = this->_vector.size() % 2;
 
@@ -102,20 +127,7 @@ void PmergeMe::parse_odd_v(void)
 	this->_vector.pop_back();
 }
 
-std::deque<int>	PmergeMe::goSortD(void)
-{
-	std::deque<int> raw = this->_deque;
-	std::deque<std::deque<int> > pairs;
-
-	if (raw.size() < 2)
-		return (raw);
-	parse_odd_d();
-	pairs = splitPairsD(this->_deque);
-	pairs = externSortPairsD(pairs);
-	return(sortedD(pairs));
-}
-
-void PmergeMe::parse_odd_d(void)
+void PmergeMe::parseOddD(void)
 {
 	int is_odd = this->_deque.size() % 2;
 
@@ -125,6 +137,76 @@ void PmergeMe::parse_odd_d(void)
 	this->_burr = this->_deque.back();
 	this->_odd = true;
 	this->_deque.pop_back();
+}
+
+//sorteds
+
+std::vector<int> PmergeMe::sortedV(std::vector<std::vector<int> > raw)
+{
+	std::vector<int> main;
+	std::vector<int> pend;
+	std::vector<int>::iterator it;
+	std::vector<int> insert_order;
+
+	for (size_t i = 0; i < raw.size(); i++)
+	{
+		main.push_back(raw[i][0]);
+		pend.push_back(raw[i][1]);
+	}
+	if (this->_odd)
+		pend.push_back(this->_burr);
+
+	main.insert(main.begin(), *pend.begin());
+	
+	insert_order = creatInsertOrderV(pend.size());
+	for (size_t i = 0; i < insert_order.size(); i++)
+	{
+		int value = pend[insert_order[i]];
+		size_t pos = searchPosV(main, value);
+		if (pos == main.size())
+			main.push_back(value);
+		else
+		{
+			it = main.begin();
+			std::advance(it, pos);
+			main.insert(it, value);
+		}
+	}
+	return (main);
+}
+
+std::deque<int> PmergeMe::sortedD(std::deque<std::deque<int> > raw)
+{
+	std::deque<int> main;
+	std::deque<int> pend;
+	std::deque<int>::iterator it;
+	std::deque<int> insert_order;
+
+	for (size_t i = 0; i < raw.size(); i++)
+	{
+		main.push_back(raw[i][0]);
+		pend.push_back(raw[i][1]);
+	}
+	if (this->_odd)
+		pend.push_back(this->_burr);
+
+	main.push_front(*pend.begin());
+	
+	insert_order = creatInsertOrderD(pend.size());
+	for (size_t i = 0; i < insert_order.size(); i++)
+	{
+		int value = pend[insert_order[i]];
+		size_t pos = searchPosD(main, value);
+		if (pos == main.size())
+			main.push_back(value);
+		else
+		{
+			it = main.begin();
+			std::advance(it, pos);
+			main.insert(it, value);
+		}
+	}
+	return (main);
 }
 
 //splits pairs 
@@ -152,10 +234,10 @@ std::vector<std::vector<int> > splitPairsV(std::vector<int> raw)
 	return (pairs);
 }
 
-std::deque<std::vector<int> > splitPairsD(std::vector<int> raw)
+std::deque<std::deque<int> > splitPairsD(std::deque<int> raw)
 {
 	std::deque<int> temp;
-	std::deque<std::vector<int> > pairs;
+	std::deque<std::deque<int> > pairs;
 
 	for (size_t i = 0; i < raw.size(); i += 2)
 	{
@@ -175,14 +257,47 @@ std::deque<std::vector<int> > splitPairsD(std::vector<int> raw)
 	return (pairs);
 }
 
-//
+//externSortPairs
 
-std::deque<std::vector<int> > externSortPairs(std::deque<std::vector<int> > raw)
+std::vector<std::vector<int> > externSortPairsV(std::vector<std::vector<int> > raw)
 {
-	std::deque<std::vector<int> > ord;
-	std::deque<std::vector<int> > pairs = raw;
-	std::deque<std::vector<int> >::iterator it;
+	std::vector<std::vector<int> > ord;
+	std::vector<std::vector<int> > pairs = raw;
+	std::vector<std::vector<int> >::iterator it;
 	std::vector<int> element;
+
+	ord.push_back(*pairs.begin());
+	pairs.erase(pairs.begin());
+	
+	while (!pairs.empty())
+	{
+		it = ord.begin();
+		element = *pairs.begin();
+		while (it != ord.end())
+		{
+			if (element[0] < it[0][0])
+			{
+				ord.insert(it, element);
+				break ;
+			}
+			++it;
+			if (it == ord.end())
+			{
+				ord.push_back(element);
+				break ;
+			}
+		}
+		pairs.erase(pairs.begin());
+	}
+	return (ord);
+}
+
+std::deque<std::deque<int> > externSortPairsD(std::deque<std::deque<int> > raw)
+{
+	std::deque<std::deque<int> > ord;
+	std::deque<std::deque<int> > pairs = raw;
+	std::deque<std::deque<int> >::iterator it;
+	std::deque<int> element;
 
 	ord.push_back(*pairs.begin());
 	pairs.pop_front();
@@ -210,59 +325,46 @@ std::deque<std::vector<int> > externSortPairs(std::deque<std::vector<int> > raw)
 	return (ord);
 }
 
-std::deque<int> PmergeMe::sorted(std::deque<std::vector<int> > raw)
+
+//creatInsertOrders
+
+std::vector<int>	creatInsertOrderV(size_t size)
 {
-	std::deque<int> main;
-	std::deque<int> pend;
-	std::deque<int>::iterator it;
-	std::vector<int> insert_order;
+	int j_count = 0;
+	int i_count = 0;
+	std::vector<int> index;
+	std::vector<int> result;
+	std::vector<int> jacobs = createJacobsthalSequenceV(size);
 
-	for (size_t i = 0; i < raw.size(); i++)
-	{
-		main.push_back(raw[i][0]);
-		pend.push_back(raw[i][1]);
-	}
-	if (this->_odd)
-		pend.push_back(this->_burr);
+	for (size_t i = 0; i < size + 1; i++)
+		index.push_back(i);
+	jacobs.erase(jacobs.begin());
+	jacobs.erase(jacobs.begin());
+	index.erase(index.begin());
 
-	main.push_front(*pend.begin());
-	
-	insert_order = creatInsertOrder(pend.size());
-	for (size_t i = 0; i < insert_order.size(); i++)
+	result.push_back(jacobs[0]);
+	while (result.size() != size - 1)
 	{
-		int value = pend[insert_order[i]];
-		size_t pos = searchPos(main, value);
-		if (pos == main.size())
-			main.push_back(value);
-		else
+		if (jacobs[j_count] <= index[i_count])
 		{
-			it = main.begin();
-			std::advance(it, pos);
-			main.insert(it, value);
+			j_count++;
+			if (jacobs[j_count] < (int)size)
+				result.push_back(jacobs[j_count]);
 		}
+		else
+			result.push_back(index[i_count]);
+		i_count++;
 	}
-	return (main);
+	return (result);
 }
 
-size_t searchPos(std::deque<int> main, int value)
-{
-	size_t i;
-
-	for (i = 0; i < main.size(); i++)
-	{
-		if (main[i] > value)
-			return (i);
-	}
-	return (main.size());
-}
-
-std::vector<int>	creatInsertOrder(size_t size)
+std::deque<int>	creatInsertOrderD(size_t size)
 {
 	int j_count = 0;
 	int i_count = 0;
 	std::deque<int> index;
-	std::vector<int> result;
-	std::deque<int> jacobs = createJacobsthalSequence(size);
+	std::deque<int> result;
+	std::deque<int> jacobs = createJacobsthalSequenceD(size);
 
 	for (size_t i = 0; i < size + 1; i++)
 		index.push_back(i);
@@ -286,13 +388,19 @@ std::vector<int>	creatInsertOrder(size_t size)
 	return (result);
 }
 
-int jacobsthal(int n) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+//creat jacobsthal sequences
+
+std::vector<int> createJacobsthalSequenceV(size_t n)
+{
+    std::vector<int> result;
+
+    for (size_t i = 0; i <= n; ++i) {
+        result.push_back(jacobsthal(i));
+    }
+    return result;
 }
 
-std::deque<int> createJacobsthalSequence(size_t n)
+std::deque<int> createJacobsthalSequenceD(size_t n)
 {
     std::deque<int> result;
 
@@ -300,6 +408,53 @@ std::deque<int> createJacobsthalSequence(size_t n)
         result.push_back(jacobsthal(i));
     }
     return result;
+}
+
+//searchPos
+
+size_t searchPosV(std::vector<int> main, int value)
+{
+	size_t i;
+
+	for (i = 0; i < main.size(); i++)
+	{
+		if (main[i] > value)
+			return (i);
+	}
+	return (main.size());
+}
+
+size_t searchPosD(std::deque<int> main, int value)
+{
+	size_t i;
+
+	for (i = 0; i < main.size(); i++)
+	{
+		if (main[i] > value)
+			return (i);
+	}
+	return (main.size());
+}
+
+//jacobsthal
+
+int jacobsthal(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+}
+
+//prints
+
+void	printVector(std::vector<int> vec)
+{
+	std::vector<int>::iterator it;
+
+	it = vec.begin();
+
+	for (it = vec.begin(); it != vec.end(); ++it)
+		std::cout << *it << " ";
+	std::cout  << std::endl;
 }
 
 void	printDeque(std::deque<int> vec)
@@ -312,3 +467,5 @@ void	printDeque(std::deque<int> vec)
 		std::cout << *it << " ";
 	std::cout  << std::endl;
 }
+
+

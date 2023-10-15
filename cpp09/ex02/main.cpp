@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 03:20:25 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:35:28 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	main(int argc, char *argv[])
 {
 	PmergeMe pmerge;
-	std::deque<int> result;
+	std::vector<int> resultV;
+	std::deque<int> resultD;
 
 	if (argc < 3)
 	{
@@ -26,10 +27,16 @@ int	main(int argc, char *argv[])
 	try
 	{
 		for (int i = 1; i < argc; i++)
-		pmerge.addNumber(argv[i]);
-		result = pmerge.goSort();
+		{
+			pmerge.addNumber(argv[i]);
+		}
+		resultV = pmerge.goSortV();
+		resultD = pmerge.goSortD();
+
 		std::cout << std::endl;
-		printDeque(result);
+		printVector(resultV);
+		std::cout << std::endl;
+		printDeque(resultD);
 	}
 	catch (std::exception const &e)
 	{

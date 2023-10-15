@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 03:45:12 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:39:14 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ class PmergeMe
 		std::deque<int>		_deque;
 		bool				_odd;
 		int					_burr;
-		void				parse_odd(void);
-		std::deque<int> 	sorted(std::deque<std::vector<int> > raw);
+		void				parseOddV(void);
+		void				parseOddD(void);
+		std::vector<int> 	sortedV(std::vector<std::vector<int> > raw);
+		std::deque<int> 	sortedD(std::deque<std::deque<int> > raw);
 
     public:
         PmergeMe();
@@ -35,22 +37,34 @@ class PmergeMe
         PmergeMe& operator=(const PmergeMe& temp);
         ~PmergeMe();
 
-		void	addNumberV(std::string number);
-		void	addNumberD(std::string number);
+		void				addNumber(std::string number);
 		std::vector<int>	goSortV(void);
 		std::deque<int>		goSortD(void);
 };
 
 std::ostream&   operator<<( std::ostream &out, const PmergeMe &ref);
-void	printPairs(std::deque<std::vector<int> > vec);
-void	printVector(std::vector<int> vec);
-void	printDeque(std::deque<int> vec);
-int		jacobsthal(int n);
-std::vector<int>	creatInsertOrder(size_t size);
-std::deque<int> createJacobsthalSequence(size_t n);
-size_t searchPos(std::deque<int> main, int value);
-std::deque<std::vector<int> > splitPairs(std::vector<int> raw);
-std::deque<std::vector<int> > externSortPairs(std::deque<std::vector<int> > raw);
+
+void							printVector(std::vector<int> vec);
+void							printDeque(std::deque<int> vec);
+int								jacobsthal(int n);
+
+std::vector<std::vector<int> >	splitPairsV(std::vector<int> raw);
+std::deque<std::deque<int> >	splitPairsD(std::deque<int> raw);
+
+std::vector<std::vector<int> >	externSortPairsV(std::vector<std::vector<int> > raw);
+std::deque<std::deque<int> >	externSortPairsD(std::deque<std::deque<int> > raw);
+
+std::vector<int>				creatInsertOrderV(size_t size);
+std::deque<int>					creatInsertOrderD(size_t size);
+
+std::vector<int>				createJacobsthalSequenceV(size_t n);
+std::deque<int>					createJacobsthalSequenceD(size_t n);
+
+size_t							searchPosV(std::vector<int> main, int value);
+size_t							searchPosD(std::deque<int> main, int value);
+
+
+
 
 
 #endif /*PmergeMe_HPP*/
