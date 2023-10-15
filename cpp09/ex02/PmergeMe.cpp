@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 23:45:17 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 05:31:21 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,25 +331,24 @@ std::deque<std::deque<int> > externSortPairsD(std::deque<std::deque<int> > raw)
 std::vector<int>	creatInsertOrderV(size_t size)
 {
 	int j_count = 0;
-	int i_count = 0;
+	int i_count = 2;
+	int jacobs = jacobsthal(j_count);
 	std::vector<int> index;
 	std::vector<int> result;
-	std::vector<int> jacobs = createJacobsthalSequenceV(size);
 
 	for (size_t i = 0; i < size + 1; i++)
 		index.push_back(i);
-	jacobs.erase(jacobs.begin());
-	jacobs.erase(jacobs.begin());
 	index.erase(index.begin());
 
-	result.push_back(jacobs[0]);
+	result.push_back(jacobs);
 	while (result.size() != size - 1)
 	{
-		if (jacobs[j_count] <= index[i_count])
+		if (jacobs <= index[i_count])
 		{
 			j_count++;
-			if (jacobs[j_count] < (int)size)
-				result.push_back(jacobs[j_count]);
+			jacobs = jacobsthal(j_count);
+			if (jacobs < (int)size)
+				result.push_back(jacobs);
 		}
 		else
 			result.push_back(index[i_count]);
@@ -360,26 +359,25 @@ std::vector<int>	creatInsertOrderV(size_t size)
 
 std::deque<int>	creatInsertOrderD(size_t size)
 {
-	int j_count = 0;
+	int j_count = 2;
 	int i_count = 0;
+	int jacobs = jacobsthal(j_count);
 	std::deque<int> index;
 	std::deque<int> result;
-	std::deque<int> jacobs = createJacobsthalSequenceD(size);
 
 	for (size_t i = 0; i < size + 1; i++)
 		index.push_back(i);
-	jacobs.pop_front();
-	jacobs.pop_front();
 	index.pop_front();
 
-	result.push_back(jacobs[0]);
+	result.push_back(jacobs);
 	while (result.size() != size - 1)
 	{
-		if (jacobs[j_count] <= index[i_count])
+		if (jacobs <= index[i_count])
 		{
 			j_count++;
-			if (jacobs[j_count] < (int)size)
-				result.push_back(jacobs[j_count]);
+			jacobs = jacobsthal(j_count);
+			if (jacobs < (int)size)
+				result.push_back(jacobs);
 		}
 		else
 			result.push_back(index[i_count]);
