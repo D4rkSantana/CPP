@@ -12,12 +12,12 @@
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(void) : _inputFile("input.txt"), _dataFile("data.csv")
+BitcoinExchange::BitcoinExchange(void) : _inputFile("input.txt"), _dataFile("data.csv"), _first_date(0)
 {
 	goWork();
 }
 
-BitcoinExchange::BitcoinExchange(std::string inputFile) : _inputFile(inputFile), _dataFile("data.csv")
+BitcoinExchange::BitcoinExchange(std::string inputFile) : _inputFile(inputFile), _dataFile("data.csv"), _first_date(0)
 {
 	goWork();
 }
@@ -85,19 +85,19 @@ void	BitcoinExchange::_initDataFile(){
 
 	checkOpen(this->_dataFile.c_str(), 'd');
 	ifs.open(this->_dataFile.c_str());
-	std::getline(ifs, line); //pega a header e ignora
+	std::getline(ifs, line);
 	while (std::getline(ifs, line)){
 		pos = line.find(',');
 		
-		date = line.substr(0, pos); // recorta a string com a data
-		value = line.substr(pos + 1); // recorta a string com valor
-		rate = atof(value.c_str()); //converte a string valor para double
-		_dataBase[date] = rate; // insere a nova cotação no mapa
+		date = line.substr(0, pos);
+		value = line.substr(pos + 1);
+		rate = atof(value.c_str());
+		_dataBase[date] = rate;
     }
 	ifs.close();
+	std::map<std::string, double>::iterator it = _dataBase.begin();
+	_first_date = dateToInt(it->first);
 }
-
-// abre o input e faz um loop calculando as linhas em valor
 
 void	BitcoinExchange::_initInputFile(){
 	std::ifstream	ifs;
@@ -105,19 +105,18 @@ void	BitcoinExchange::_initInputFile(){
 
 	checkOpen(this->_inputFile.c_str(), 'i');
 	ifs.open(this->_inputFile.c_str());
-	std::getline(ifs, line); //pega a header e ignora
+	std::getline(ifs, line);
 	while (std::getline(ifs, line))
 	{
-		//verifica a integridade da linha do input
 		if (line.find("|") == std::string::npos || line.empty())
 			std::cout << "Error: bad input => " << line << std::endl;
 		else
 		{
-			size_t pos = line.find('|'); // acha o delimitador
-			date = line.substr(0, pos); //recorta a string data
-			value = line.substr(pos + 1); //recorta string quantidade
-			double rate = atof(value.c_str()); // converte quant em double
-			_calcBitcoin(date, rate); // calcula o valor do bitcoin
+			size_t pos = line.find('|');
+			date = line.substr(0, pos);
+			value = line.substr(pos + 1);
+			double rate = atof(value.c_str());
+			_calcBitcoin(date, rate);
 		}
 	}
 }
@@ -125,7 +124,7 @@ void	BitcoinExchange::_initInputFile(){
 //faz a checagem e imprime a linha com o resultado do valor dos bitcoins
 
 void	BitcoinExchange::_calcBitcoin(std::string date, double value){
-	if (!checkDate(date)){
+	if (!checkDate(this->_first_date, date)){
 		std::cout << "Error: Invalid date." << std::endl;
 		return ;
 	}
@@ -134,60 +133,36 @@ void	BitcoinExchange::_calcBitcoin(std::string date, double value){
 	else if (value > 1000)
 		std::cout << "Error: too large a number." << std::endl;
 	else {
-		double result = _calcValue(date, value);
-		std::cout << date << "=> " << value << " = " << result << std::endl;
+		long double result = _calcValue(date, value);
+		result = static_cast<int>(result * 100 + 0.5) / 100.0;
+		std::cout << std::fixed << std::setprecision(2) << date << "=> " << value << " = " << result << std::endl;
 	}
 }
 
 // faz o calculo do valor cruzando os dados do Banco e da linha do input
 
-double	BitcoinExchange::_calcValue(std::string date, double value)
+long double	BitcoinExchange::_calcValue(std::string date, double value)
 {
 	int date_input = 0;
+	int	date_next = 0;
 	int	date_it = 0;
-	int date_next = 0;
-	std::map<std::string, double>::iterator	it; // cria um iterador do map
-
-	it = _dataBase.find(date); // procura no banco se existe uma data identica
-	
-	if (it != _dataBase.end()) // se existir já resolve o valor
-		return (it->second * value);
+	std::map<std::string, double>::iterator	it;
+	std::map<std::string, double>::iterator	next;
 
 	date_input = dateToInt(date);
-	for (it = _dataBase.begin(); it != _dataBase.end(); it++) //itera o mapa em busca da data mais proxima
+	for (it = _dataBase.begin(); it != _dataBase.end(); it++)
 	{
-		//	cria um iterador para um elemento a frente
-		std::map<std::string, double>::iterator	next = it;
+		next = it;
 		next++;
-	
-		//converte a data em string para int a fim de viabilizar a comparação
+		if (next == _dataBase.end())
+			return (static_cast<long double>(it->second * value));
+			
+
+		date_next = dateToInt(next->first);
 		date_it = dateToInt(it->first);
-		if (next != _dataBase.end())
-			date_next = dateToInt(next->first);
-		else
-			date_next = 0;
-		
-		/*	verifica dois cenarios diferentes
-
-			cenario 1:	se a data do input for maior ou igual 
-						ao elemento do banco e esse elemento
-						for o ultimo
-
-			cenario 2:	se a data do input for maior ou igual 
-						a data o elemento do banco atual e menor
-						que a data do proximo elemento do banco
-
-			caso for algum dos dois, resolve e retorna o valor 
-		*/
-
-		if (((date_input >= date_it) && (next == _dataBase.end()))
-				|| ((date_input >= date_it) && (date_input < date_next)))
-			{
-				std::cout << "data usado: " << date << std::endl;
-				std::cout << "data value: " << it->second << std::endl;
-				std::cout << "quantidade: " << value << std::endl;
-				return (it->second * value);
-			}
+		if (date_input >= date_it && date_input < date_next)
+			return (static_cast<long double>(it->second * value));
+			
 	}
 	return (0);
 }
@@ -242,9 +217,6 @@ int	dateToInt(std::string date)
 	result.month = -1;
 	result.day = -1;
 
-	if (date.length() != 11)
-		return (-1);
-
 	std::stringstream ss(date);
 	ss >> result.year >> aux >> result.month >> aux >> result.day;
 
@@ -269,13 +241,11 @@ date_t	convertDate(std::string date)
 	return (result);
 }
 
-bool checkDate(std::string rawDate)
+bool checkDate(int first_date, std::string rawDate)
 {
 	date_t date = convertDate(rawDate);
 	
-	if (date.year == 2009 && date.month == 1 && date.day == 1)
-		return (false);
-	if (date.year < 2009 || date.year > 2023)
+	if (first_date > dateToInt(rawDate))
 		return (false);
 	if (date.month < 1 || date.month > 12)
 		return (false);

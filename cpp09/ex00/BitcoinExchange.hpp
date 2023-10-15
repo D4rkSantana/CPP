@@ -18,6 +18,7 @@
 #include <sstream> //separar numeros da data
 #include <string>
 #include <cstdlib>
+#include <iomanip>
 #include <map> //conteiner map
 
 typedef struct date_s
@@ -44,14 +45,15 @@ class BitcoinExchange
 		std::string	_inputFile;
 		std::string	_dataFile;
 		std::map<std::string, double>	_dataBase;
+		int	_first_date;
 
 		void	_initDataFile();
 		void	_initInputFile();
 		void	_calcBitcoin(std::string date, double value);
-		double	_calcValue(std::string date, double value);
+		long double	_calcValue(std::string date, double value);
 };
 
-bool	checkDate(std::string rawDate);
+bool	checkDate(int first_date, std::string rawDate);
 bool	checkFile(std::string file);
 int		dateToInt(std::string date);
 #endif /*BITCOINEXCHANGE_HPP*/
