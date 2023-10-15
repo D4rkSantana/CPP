@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:14:28 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 15:03:29 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 20:08:27 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 		}
 		resultV = pmerge.goSortV();
 		end = std::clock();
-		timeV = static_cast<double>(end - start) / CLOCKS_PER_SEC * 10000000.0;
+		timeV = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
 	
 		start = std::clock();
 		for (int i = 1; i < argc; i++)
@@ -47,7 +47,7 @@ int	main(int argc, char *argv[])
 		}
 		resultD = pmerge.goSortD();
 		end = std::clock();
-		timeD = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000.0;
+		timeD = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
 	}
 	catch (std::exception const &e)
 	{
@@ -60,8 +60,8 @@ int	main(int argc, char *argv[])
 	std::cout << "after : ";
 	printVector(resultV);
 
-	std::cout << "Time to process a range of " << pmerge.getSizeV() << " elements with std::vector : " << timeV << " us\n";
-	std::cout << "Time to process a range of " << pmerge.getSizeD() << " elements with std::deque  : " << timeD << " us\n";
+	std::cout << "Time to process a range of " << pmerge.getSizeV() << " elements with std::vector : " << timeV << " ms\n";
+	std::cout << "Time to process a range of " << pmerge.getSizeD() << " elements with std::deque  : " << timeD << " ms\n";
 
 
 
