@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 03:21:43 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:57:54 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ std::ostream&   operator<<( std::ostream &out, const PmergeMe &ref)
     return (out);
 }
 
-void	PmergeMe::addNumber(std::string input)
+
+// Add Numbers 
+
+
+void	PmergeMe::addNumberV(std::string input)
 {
 	for (size_t index = 0; index < input.size(); index++)
 	{
@@ -54,31 +58,43 @@ void	PmergeMe::addNumber(std::string input)
 			throw std::runtime_error("Error: Invalid character in input.");
 	}
 	this->_vector.push_back(std::atoi(input.c_str()));
-	this->_isOrdered = false;
 }
 
-std::deque<int>	PmergeMe::goSort(void)
+void	PmergeMe::addNumberD(std::string input)
+{
+	for (size_t index = 0; index < input.size(); index++)
+	{
+		if (input[index] >= '0' && input[index] <= '9')
+			continue ; 		
+		else if ((input[index] == '+' || input[index] == ' ') && index == 0)
+			continue ;
+		else
+			throw std::runtime_error("Error: Invalid character in input.");
+	}
+	this->_deque.push_back(std::atoi(input.c_str()));
+}
+
+//go sorts 
+
+std::vector<int>	PmergeMe::goSortV(void)
 {
 	std::vector<int> raw = this->_vector;
-	std::deque<std::vector<int> > pairs;
+	std::vector<std::vector<int> > pairs;
 
 	if (raw.size() < 2)
-	{
-		std::deque<int> small(raw.begin(), raw.end());
-		this->_isOrdered = true;
-		return (small);
-	}
-	parse_odd();
+		return (raw);
+	parse_odd_v();
 
-	pairs = splitPairs(this->_vector);
-	pairs = externSortPairs(pairs);
-	return(sorted(pairs));
+	pairs = splitPairsV(this->_vector);
+	pairs = externSortPairsV(pairs);
+	return(sortedV(pairs));
 }
 
-void PmergeMe::parse_odd(void)
+void PmergeMe::parse_odd_v(void)
 {
 	int is_odd = this->_vector.size() % 2;
 
+	this->_odd = false;
 	if (!is_odd)
 		return ;
 	this->_burr = this->_vector.back();
@@ -86,9 +102,59 @@ void PmergeMe::parse_odd(void)
 	this->_vector.pop_back();
 }
 
-std::deque<std::vector<int> > splitPairs(std::vector<int> raw)
+std::deque<int>	PmergeMe::goSortD(void)
 {
-	std::vector<int> temp;
+	std::deque<int> raw = this->_deque;
+	std::deque<std::deque<int> > pairs;
+
+	if (raw.size() < 2)
+		return (raw);
+	parse_odd_d();
+	pairs = splitPairsD(this->_deque);
+	pairs = externSortPairsD(pairs);
+	return(sortedD(pairs));
+}
+
+void PmergeMe::parse_odd_d(void)
+{
+	int is_odd = this->_deque.size() % 2;
+
+	this->_odd = false;
+	if (!is_odd)
+		return ;
+	this->_burr = this->_deque.back();
+	this->_odd = true;
+	this->_deque.pop_back();
+}
+
+//splits pairs 
+
+std::vector<std::vector<int> > splitPairsV(std::vector<int> raw)
+{
+	std::vector<int>				temp;
+	std::vector<std::vector<int> >	pairs;
+
+	for (size_t i = 0; i < raw.size(); i += 2)
+	{
+		if (raw[i] > raw[i+1])
+		{
+			temp.push_back(raw[i]);
+			temp.push_back(raw[i+1]);
+		}	
+		else
+		{
+			temp.push_back(raw[i+1]);
+			temp.push_back(raw[i]);
+		}
+		pairs.push_back(temp);
+		temp.clear();
+	}
+	return (pairs);
+}
+
+std::deque<std::vector<int> > splitPairsD(std::vector<int> raw)
+{
+	std::deque<int> temp;
 	std::deque<std::vector<int> > pairs;
 
 	for (size_t i = 0; i < raw.size(); i += 2)
@@ -108,6 +174,8 @@ std::deque<std::vector<int> > splitPairs(std::vector<int> raw)
 	}
 	return (pairs);
 }
+
+//
 
 std::deque<std::vector<int> > externSortPairs(std::deque<std::vector<int> > raw)
 {

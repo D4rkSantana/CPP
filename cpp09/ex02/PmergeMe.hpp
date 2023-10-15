@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 03:14:44 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:45:12 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ class PmergeMe
 {
     private:
 		std::vector<int>	_vector;
-		bool				_isOrdered;
+		std::deque<int>		_deque;
 		bool				_odd;
 		int					_burr;
-		void	parse_odd(void);
-		std::deque<int> sorted(std::deque<std::vector<int> > raw);
+		void				parse_odd(void);
+		std::deque<int> 	sorted(std::deque<std::vector<int> > raw);
 
     public:
         PmergeMe();
@@ -35,8 +35,10 @@ class PmergeMe
         PmergeMe& operator=(const PmergeMe& temp);
         ~PmergeMe();
 
-		void	addNumber(std::string number);
-		std::deque<int>	goSort(void);
+		void	addNumberV(std::string number);
+		void	addNumberD(std::string number);
+		std::vector<int>	goSortV(void);
+		std::deque<int>		goSortD(void);
 };
 
 std::ostream&   operator<<( std::ostream &out, const PmergeMe &ref);
