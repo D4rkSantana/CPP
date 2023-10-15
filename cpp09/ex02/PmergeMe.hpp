@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:21:25 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/14 23:39:14 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 14:04:20 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <limits.h>
+#include <ctime>
 #include <vector>
 #include <deque>
 
@@ -26,6 +28,8 @@ class PmergeMe
 		std::deque<int>		_deque;
 		bool				_odd;
 		int					_burr;
+		int					_sizeV;
+		int					_sizeD;
 		void				parseOddV(void);
 		void				parseOddD(void);
 		std::vector<int> 	sortedV(std::vector<std::vector<int> > raw);
@@ -37,7 +41,12 @@ class PmergeMe
         PmergeMe& operator=(const PmergeMe& temp);
         ~PmergeMe();
 
-		void				addNumber(std::string number);
+		int					getSizeV(void);
+		int					getSizeD(void);
+		void				addNumberV(std::string number);
+		void				addNumberD(std::string number);
+		void				printRawV(void);
+		void				printRawD(void);
 		std::vector<int>	goSortV(void);
 		std::deque<int>		goSortD(void);
 };

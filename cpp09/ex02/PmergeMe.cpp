@@ -6,7 +6,7 @@
 /*   By: esilva-s <esilva-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:36:00 by esilva-s          #+#    #+#             */
-/*   Updated: 2023/10/15 05:31:21 by esilva-s         ###   ########.fr       */
+/*   Updated: 2023/10/15 14:15:47 by esilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 PmergeMe::PmergeMe()
 {
+	this->_sizeV = 0;
+	this->_sizeD = 0;
+	this->_odd = false;
     return ;
 }
 
@@ -41,10 +44,23 @@ std::ostream&   operator<<( std::ostream &out, const PmergeMe &ref)
     return (out);
 }
 
+int PmergeMe::getSizeV(void)
+{
+	return (this->_sizeV);
+}
+
+
+int PmergeMe::getSizeD(void)
+{
+	return (this->_sizeD);
+}
+
 // Add Numbers 
 
-void	PmergeMe::addNumber(std::string input)
+void	PmergeMe::addNumberV(std::string input)
 {
+	long long temp;
+
 	for (size_t index = 0; index < input.size(); index++)
 	{
 		if (input[index] >= '0' && input[index] <= '9')
@@ -54,8 +70,49 @@ void	PmergeMe::addNumber(std::string input)
 		else
 			throw std::runtime_error("Error: Invalid character in input.");
 	}
+	temp = std::atoll(input.c_str());
+	if (temp > INT_MAX || temp < INT_MIN)
+		throw std::runtime_error("Error: number out range of int.");
 	this->_vector.push_back(std::atoi(input.c_str()));
+	this->_sizeV++;
+}
+
+void	PmergeMe::addNumberD(std::string input)
+{
+	long long temp;
+	for (size_t index = 0; index < input.size(); index++)
+	{
+		if (input[index] >= '0' && input[index] <= '9')
+			continue ; 		
+		else if ((input[index] == '+' || input[index] == ' ') && index == 0)
+			continue ;
+		else
+			throw std::runtime_error("Error: Invalid character in input.");
+	}
+	temp = std::atoll(input.c_str());
+	if (temp > INT_MAX || temp < INT_MIN)
+		throw std::runtime_error("Error: number out range of int.");
 	this->_deque.push_back(std::atoi(input.c_str()));
+	this->_sizeD++;
+}
+
+//print raws
+
+void	PmergeMe::printRawV(void)
+{
+	std::vector<int> temp = this->_vector;
+
+	if (this->_odd)
+		temp.push_back(this->_burr);
+	printVector(temp);
+}
+void	PmergeMe::printRawD(void)
+{
+	std::deque<int> temp = this->_deque;
+
+	if (this->_odd)
+		temp.push_back(this->_burr);
+	printDeque(temp);
 }
 
 //go sorts
@@ -330,24 +387,26 @@ std::deque<std::deque<int> > externSortPairsD(std::deque<std::deque<int> > raw)
 
 std::vector<int>	creatInsertOrderV(size_t size)
 {
+	size_t size_now = size;
 	int j_count = 0;
 	int i_count = 2;
 	int jacobs = jacobsthal(j_count);
 	std::vector<int> index;
 	std::vector<int> result;
 
-	for (size_t i = 0; i < size + 1; i++)
+	for (size_t i = 0; i < size_now + 1; i++)
 		index.push_back(i);
 	index.erase(index.begin());
+	size_now--;
 
 	result.push_back(jacobs);
-	while (result.size() != size - 1)
+	while (result.size() != size_now- 1)
 	{
 		if (jacobs <= index[i_count])
 		{
 			j_count++;
 			jacobs = jacobsthal(j_count);
-			if (jacobs < (int)size)
+			if (jacobs < (int)size_now)
 				result.push_back(jacobs);
 		}
 		else
